@@ -25,6 +25,8 @@ COPY . .
 
 RUN composer install --no-interaction --optimize-autoloader --no-dev
 
+RUN composer require predis/predis
+
 RUN npm install && npm run build
 
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
