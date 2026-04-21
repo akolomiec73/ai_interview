@@ -7,6 +7,7 @@
 - Backend: Laravel 11 (PHP 8.2)
 - Frontend: JavaScript (ES6+), Vite, Axios
 - База данных: PostgreSQL 16
+- Очереди: Redis
 - Сервер: Nginx, PHP-FPM
 - Контейнеризация: Docker, Docker Compose
 
@@ -20,7 +21,11 @@
 ## 📁 Структура проекта (основные папки)
 * `app/`
   * `DTO/` Data Transfer Objects
-  * `Http/Controllers/` Контроллеры
+  * `Http/` 
+    * `Controllers/` Контроллеры
+    * `Requests/` Валидация
+  * `Jobs/`
+    * `ParseVacancyJob.php` Парсинг вакансии
   * `Models/` Модели
   * `Repositories/` Репозитории (работа с БД)
   * `Services/` Бизнес-логика
