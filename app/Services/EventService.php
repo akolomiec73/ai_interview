@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\DTO\EventDto;
+use App\Jobs\ParseVacancyJob;
 use App\Repositories\Contract\EventRepositoryInterface;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
@@ -21,6 +22,7 @@ class EventService
     public function addEvent(EventDto $data): void
     {
         $this->db->createEvent($data);
+        ParseVacancyJob::dispatch($data->linkVacantion);
     }
 
     /**
