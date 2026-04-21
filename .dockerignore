@@ -1,0 +1,12 @@
+.env
+vendor/
+.git/
+tests/
+node_modules/
+docker-compose.yml
+docker/Dockerfile
+docker/nginx/
+/.idea
+.dockerignore
+.gitignore
+*.md

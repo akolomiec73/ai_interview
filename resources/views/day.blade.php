@@ -1,0 +1,44 @@
+@extends('layouts.app')
+
+@section('title', 'События ' . $date->format('d.m.Y'))
+
+@push('styles')
+@vite(['resources/css/day.css'])
+@endpush
+
+@section('content')
+    <div class="day-page-container">
+        <div class="day-page-card">
+            <div class="day-page-header">
+                <h1>📅 События на {{ $date->format('d.m.Y') }}</h1>
+                <div class="date-sub">{{ $date->translatedFormat('l') }}</div>
+            </div>
+            <div class="day-page-content">
+                @if($events->count())
+                    <ul class="events-list">
+                        @foreach($events as $event)
+                            <li class="event-item-card">
+                                <div class="event-time">
+                                    {{  $event->dateInterview->format('H:i') }}
+                                </div>
+                                <div class="event-link">
+                                    <a href="{{ $event->linkVacantion }}" target="_blank" rel="noopener noreferrer">
+                                        {{ $event->linkVacantion }}
+                                    </a>
+                                </div>
+                                @if($event->comment)
+                                    <div class="event-comment">{{ $event->comment }}</div>
+                                @endif
+                            </li>
+                        @endforeach
+                    </ul>
+                @else
+                    <div class="no-events">
+                        🕊️ На этот день событий не запланировано.
+                    </div>
+                @endif
+                <a href="{{ url('/') }}" class="back-link">← Назад к календарю</a>
+            </div>
+        </div>
+    </div>
+@endsection

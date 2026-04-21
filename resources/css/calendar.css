@@ -1,0 +1,284 @@
+/*блок календаря*/
+.calendar-card {
+    max-width: 1200px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(0px);
+    border-radius: 1.5rem;
+    box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.35), 0 4px 12px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: transform 0.2s ease;
+}
+
+/* шапка с месяцем и навигацией */
+.calendar-header {
+    background: #ffffff;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid #eef2f6;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+/* месяц в шапке */
+.month-year {
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #1f2b3c, #2a3f5e);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    letter-spacing: -0.3px;
+}
+
+/*Кнопка добавить событие*/
+.btn-add {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background-color: #10b981;
+    color: white;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-add:hover {
+    background-color: #059669;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.btn-add:active {
+    transform: translateY(1px);
+    background-color: #047857;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.btn-add:focus-visible {
+    outline: 2px solid #10b981;
+    outline-offset: 2px;
+}
+
+.btn-add::before {
+    content: "+";
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+/* кнопки навигации */
+.nav-buttons {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.nav-btn {
+    background: #f0f4fa;
+    border: none;
+    font-size: 1.5rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #1f3a5f;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.nav-btn:hover {
+    background: #e2eaf3;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px -8px rgba(0, 0, 0, 0.2);
+}
+
+.nav-btn:active {
+    transform: translateY(1px);
+}
+
+/* сетка дней недели */
+.weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background: #f8fafd;
+    border-bottom: 1px solid #e9edf2;
+    padding: 0.9rem 0;
+    font-weight: 600;
+    color: #4b5b6c;
+    text-align: center;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* дни месяца — грид */
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background: #ffffff;
+    padding: 0.5rem;
+    gap: 4px;
+}
+
+/* ячейка дня */
+.day-cell {
+    aspect-ratio: 1 / 1;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #1e2f3e;
+    background: #ffffff;
+    border: 2px solid #cfdfed;
+    border-radius: 1.7rem;
+    transition: all 0.2s;
+    cursor: default;
+    position: relative;
+    margin: 2px;
+}
+
+/* дни другого месяца */
+.day-cell.other-month {
+    color: #b9c2ce;
+    background: #fefefe;
+}
+
+/* сегодняшняя дата */
+.day-cell.today {
+    background: #2c7da0;
+    color: white;
+    font-weight: 700;
+    box-shadow: 0 4px 10px rgba(44, 125, 160, 0.3);
+}
+
+.day-cell:not(.other-month):hover {
+    background: #e9f0f9;
+    transform: scale(0.96);
+    cursor: pointer;
+}
+
+/* воскресенье или выходной */
+.day-cell.weekend:not(.other-month) {
+    color: #c44536;
+}
+
+.day-cell.today.weekend {
+    color: white;
+    background: #2c7da0;
+}
+
+.day-cell.has-event {
+    background-color: #fff0f0; /* лёгкий фон */
+}
+
+/* подпись */
+.calendar-footer {
+    background: #fbfdff;
+    border-top: 1px solid #eef2f8;
+    padding: 1rem 2rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #6c7e91;
+    letter-spacing: 0.3px;
+}
+
+@media (max-width: 550px) {
+    .calendar-header {
+        padding: 1rem 1.25rem;
+    }
+    .month-year {
+        font-size: 1.4rem;
+    }
+    .day-cell {
+        font-size: 0.85rem;
+    }
+    .weekdays {
+        font-size: 0.7rem;
+        padding: 0.6rem 0;
+    }
+    .nav-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 1.2rem;
+    }
+}
+
+.day-number {
+    position: absolute;
+    top: 6px;
+    left: 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: inherit;
+    background: transparent;
+}
+
+.day-events {
+    margin-top: 28px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    line-height: 1.2;
+    overflow: hidden;
+}
+
+.event-item {
+    background: rgba(16, 185, 129, 0.1);
+    border-radius: 12px;
+    padding: 2px 6px;
+    width: 90%;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    transition: 0.1s;
+}
+
+.event-item:hover {
+    background: rgba(16, 185, 129, 0.3);
+}
+
+.event-more {
+    font-size: 0.65rem;
+    color: #6c7e91;
+}
+
+/* Для мобильных устройств — скрываем тексты событий, оставляем точку */
+@media (max-width: 650px) {
+    .day-cell {
+        min-height: 70px;
+        padding: 4px 2px;
+    }
+    .day-number {
+        font-size: 0.8rem;
+        top: 2px;
+        left: 4px;
+    }
+    .day-events {
+        margin-top: 20px;
+        gap: 2px;
+    }
+    .event-item {
+        font-size: 0.6rem;
+        padding: 1px 4px;
+        white-space: normal;
+        word-break: break-word;
+    }
+}
