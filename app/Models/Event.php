@@ -14,6 +14,7 @@ use Illuminate\Support\Carbon;
  * @property string|null $comment
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property Vacancy $vacancy_id
  */
 class Event extends Model
 {
@@ -28,4 +29,9 @@ class Event extends Model
     protected $casts = [
         'dateInterview' => 'datetime',
     ];
+
+    public function vacancy()
+    {
+        return $this->belongsTo(Vacancy::class);
+    }
 }
