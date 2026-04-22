@@ -21,8 +21,8 @@ class EventService
      */
     public function addEvent(EventDto $data): void
     {
-        $this->db->createEvent($data);
-        ParseVacancyJob::dispatch($data->linkVacantion);
+        $event = $this->db->createEvent($data);
+        ParseVacancyJob::dispatch($data->linkVacantion, $event->id);
     }
 
     /**
