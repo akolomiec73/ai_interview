@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Jobs;
 
+use App\Repositories\Contract\EventRepositoryInterface;
+use App\Services\AiProviderFactory;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -18,15 +20,20 @@ class ParseVacancyJob implements ShouldQueue
 
     public function __construct(
         public string $vacancyUrl,
+        public int $eventId,
     ) {}
 
-    public function handle(): void
+    public function handle(EventRepositoryInterface $db): void
     {
-        Log::info('ParseVacancyJob started', ['url' => $this->vacancyUrl]);
+        Log::info('ParseVacancyJob started for event_id = '.$this->eventId, ['url' => $this->vacancyUrl]);
 
-        // Здесь будет логика парсинга (пока пусто)
+        $providerName = config('services.ai.default_provider');
+        $provider = AiProviderFactory::make($providerName);
 
-        Log::info('ParseVacancyJob finished', ['url' => $this->vacancyUrl]);
+        $result = $provider->analyzeVacancy($this->vacancyUrl);
+
+        $db->createVacancy($this->vacancyUrl, $result, $this->eventId);
+
     }
 
     public function failed(\Throwable $e): void
