@@ -37,4 +37,16 @@ return [
         ],
     ],
 
+    'ai' => [
+        'default_provider' => env('AI_PROVIDER'),
+    ],
+
+    'yandex' => [
+        'api_key' => env('YANDEX_AI_API_KEY'),
+        'folder_id' => env('YANDEX_AI_FOLDER_ID'),
+    ],
+
+    'openai' => [
+        'api_key' => env('OPENAI_API_KEY'),
+    ],
 ];
