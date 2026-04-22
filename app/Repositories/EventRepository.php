@@ -31,8 +31,8 @@ class EventRepository implements EventRepositoryInterface
      */
     public function getEvents(Carbon $startDate, Carbon $endDate): Collection
     {
-        return Event::whereBetween('dateInterview', [$startDate, $endDate])
-            ->select('id', 'dateInterview', 'linkVacantion', 'comment')
+        return Event::with('vacancy')
+            ->whereBetween('dateInterview', [$startDate, $endDate])
             ->orderBy('dateInterview', 'asc')
             ->get();
     }
@@ -53,7 +53,6 @@ class EventRepository implements EventRepositoryInterface
             ]
         );
         Event::where('id', $eventId)->update(['vacancy_id' => $vacancy->id]);
-        \Log::info('try update key', ['eventId' => $eventId, 'vacancyId' => $vacancy->id]);
 
         return $vacancy;
     }
