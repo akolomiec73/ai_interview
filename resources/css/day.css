@@ -56,7 +56,7 @@ body.day-page {
     border-radius: 1.5rem;
     padding: 1.25rem;
     transition: all 0.2s;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .event-item-card:hover {
@@ -131,4 +131,81 @@ body.day-page {
     .day-page-content { padding: 1rem; }
     .event-item-card { padding: 1rem; }
     .event-time { font-size: 1rem; }
+}
+
+/* Название + компания + зарплата */
+.event-name {
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.company-name {
+    font-weight: 700;
+    color: #0f5c7a;
+    background: #e7f0f9;
+    padding: 0.2rem 0.7rem;
+    border-radius: 30px;
+    font-size: 0.9rem;
+}
+
+.company-salary {
+    background: #eef2e6;
+    color: #2b6e3c;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 0.2rem 0.7rem;
+    border-radius: 30px;
+}
+
+.company-format_work {
+    background: #f0eef9;
+    color: #5a4a8c;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 0.2rem 0.7rem;
+    border-radius: 30px;
+}
+
+/* Скиллы */
+.company-skills {
+    color: #2f4858;
+    background: #f8fafc;
+    padding: 0.5rem 0.8rem;
+    margin: 0.7rem 0;
+    line-height: 1.4;
+    border-left: 3px solid #8db5d6;
+}
+
+.event-link a {
+    font-weight: 500;
+    color: #2c7da0;
+}
+
+.event-link a:hover {
+    color: #1f5e7a;
+    border-bottom-color: #1f5e7a;
+}
+
+/* Комментарий */
+.event-comment {
+    background: #fff9ef;
+    padding: 0.6rem 0.9rem;
+    color: #7a6a42;
+    border-left: 3px solid #f5bc70;
+}
+
+/* Пустое состояние */
+.no-events {
+    text-align: center;
+    padding: 3rem 1rem;
+    font-size: 1rem;
+    color: #6c7e91;
+    background: #f9fbfe;
+    border-radius: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.back-link:hover {
+    background: #e2eaf3;
+    transform: translateX(-4px);
 }
