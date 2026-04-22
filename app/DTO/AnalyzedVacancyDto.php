@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\DTO;
 
 readonly class AnalyzedVacancyDto
@@ -9,7 +11,7 @@ readonly class AnalyzedVacancyDto
         public string $salary,
         public string $formatWork,
         public string $skills,
-        public array  $topQuestions,
+        public array $topQuestions,
     ) {}
 
     /**
