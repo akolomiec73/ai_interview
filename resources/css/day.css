@@ -5,7 +5,8 @@ body.day-page {
 }
 
 .day-page-container {
-    max-width: 900px;
+    max-width: 1200px;
+    width: 100%;
     margin: 2rem auto;
     padding: 0 1rem;
 }
@@ -67,7 +68,7 @@ body.day-page {
 
 .event-time {
     font-weight: 700;
-    font-size: 1.2rem;
+    font-size: 2rem;
     color: #10b981;
     margin-bottom: 0.5rem;
     display: inline-block;
@@ -90,15 +91,6 @@ body.day-page {
 .event-link a:hover {
     color: #10b981;
     text-decoration: underline;
-}
-
-.event-comment {
-    color: #4b5b6c;
-    background: #f8fafd;
-    padding: 0.5rem 1rem;
-    border-radius: 1rem;
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
 }
 
 .no-events {
@@ -208,4 +200,21 @@ body.day-page {
 .back-link:hover {
     background: #e2eaf3;
     transform: translateX(-4px);
+}
+
+.event-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.event-card-link:hover,
+.event-card-link:focus {
+    text-decoration: none;
+}
+
+.event-card-link:hover .event-item-card {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 20px -12px rgba(0, 0, 0, 0.15);
 }
