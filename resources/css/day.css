@@ -1,56 +1,12 @@
-/* ===== Страница событий дня ===== */
-body.day-page {
-    background: linear-gradient(145deg, #e0eafc 0%, #cfdef3 100%);
-    min-height: 100vh;
-}
-
-.day-page-container {
-    max-width: 1200px;
-    width: 100%;
-    margin: 2rem auto;
-    padding: 0 1rem;
-}
-
-.day-page-card {
-    background: white;
-    border-radius: 2rem;
-    box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.15);
-    overflow: hidden;
-    transition: transform 0.2s;
-}
-
-.day-page-header {
-    background: linear-gradient(135deg, #1f2b3c, #2a3f5e);
-    padding: 1.5rem 2rem;
-    color: white;
-}
-
-.day-page-header h1 {
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin: 0;
-    letter-spacing: -0.3px;
-}
-
-.day-page-header .date-sub {
-    opacity: 0.8;
-    margin-top: 0.25rem;
-    font-size: 0.9rem;
-}
-
-.day-page-content {
-    padding: 2rem;
-}
-
+/*Список событий*/
 .events-list {
     list-style: none;
-    padding: 0;
-    margin: 0;
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
+/*Карточка события*/
 .event-item-card {
     background: #ffffff;
     border: 1px solid #eef2f6;
@@ -61,11 +17,12 @@ body.day-page {
 }
 
 .event-item-card:hover {
-    border-color: #10b981;
-    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.1);
+    border-color: #4aa304;
+    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2);
     transform: translateY(-2px);
 }
 
+/*Время события*/
 .event-time {
     font-weight: 700;
     font-size: 2rem;
@@ -77,52 +34,14 @@ body.day-page {
     border-radius: 40px;
 }
 
-.event-link {
-    margin: 0.75rem 0;
-}
-
-.event-link a {
-    color: #2c7da0;
-    text-decoration: none;
-    word-break: break-all;
-    transition: color 0.2s;
-}
-
-.event-link a:hover {
-    color: #10b981;
-    text-decoration: underline;
-}
-
 .no-events {
     text-align: center;
-    padding: 3rem;
-    background: #f8fafd;
-    border-radius: 2rem;
+    padding: 3rem 1rem;
+    font-size: 1.4rem;
     color: #6c7e91;
-}
-
-.back-link {
-    display: inline-block;
-    margin-top: 2rem;
-    padding: 0.6rem 1.5rem;
-    background: #f0f4fa;
-    border-radius: 40px;
-    color: #1f2b3c;
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.2s;
-}
-
-.back-link:hover {
-    background: #e2eaf3;
-    transform: translateX(-4px);
-}
-
-@media (max-width: 550px) {
-    .day-page-header h1 { font-size: 1.4rem; }
-    .day-page-content { padding: 1rem; }
-    .event-item-card { padding: 1rem; }
-    .event-time { font-size: 1rem; }
+    background: #f9fbfe;
+    border-radius: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 /* Название + компания + зарплата */
@@ -134,10 +53,7 @@ body.day-page {
 .company-name {
     font-weight: 700;
     color: #0f5c7a;
-    background: #e7f0f9;
-    padding: 0.2rem 0.7rem;
-    border-radius: 30px;
-    font-size: 0.9rem;
+    font-size: 1.5rem;
 }
 
 .company-salary {
@@ -168,16 +84,6 @@ body.day-page {
     border-left: 3px solid #8db5d6;
 }
 
-.event-link a {
-    font-weight: 500;
-    color: #2c7da0;
-}
-
-.event-link a:hover {
-    color: #1f5e7a;
-    border-bottom-color: #1f5e7a;
-}
-
 /* Комментарий */
 .event-comment {
     background: #fff9ef;
@@ -186,35 +92,9 @@ body.day-page {
     border-left: 3px solid #f5bc70;
 }
 
-/* Пустое состояние */
-.no-events {
-    text-align: center;
-    padding: 3rem 1rem;
-    font-size: 1rem;
-    color: #6c7e91;
-    background: #f9fbfe;
-    border-radius: 2rem;
-    margin-bottom: 1.5rem;
-}
-
-.back-link:hover {
-    background: #e2eaf3;
-    transform: translateX(-4px);
-}
-
 .event-card-link {
     display: block;
     text-decoration: none;
     color: inherit;
     cursor: pointer;
-}
-
-.event-card-link:hover,
-.event-card-link:focus {
-    text-decoration: none;
-}
-
-.event-card-link:hover .event-item-card {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 20px -12px rgba(0, 0, 0, 0.15);
 }

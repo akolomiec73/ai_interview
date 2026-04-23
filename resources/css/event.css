@@ -1,0 +1,41 @@
+/* Кнопка удаления события */
+.btn-danger {
+    background-color: #932a34;
+}
+
+/* Кнопка "Перенести" */
+.btn-move {
+    background-color: #4f8ee1;
+    margin-right: 8px;
+}
+
+.detail-row {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.label {
+    font-weight: 600;
+    width: 120px;
+}
+
+.vacancy-block {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 2px solid #eef2f6;
+}
+
+.top-questions {
+    background: #f9fbfe;
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-top: 1rem;
+}
+
+.top-questions ul {
+    margin: 0.5rem 0 0 1.5rem;
+}
+
