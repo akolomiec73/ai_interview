@@ -1,0 +1,133 @@
+.event-show-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+
+.event-card {
+    background: white;
+    border-radius: 2rem;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.event-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 1.5rem;
+}
+
+.detail-row {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.label {
+    font-weight: 600;
+    width: 120px;
+}
+
+.vacancy-block {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 2px solid #eef2f6;
+}
+
+.top-questions {
+    background: #f9fbfe;
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-top: 1rem;
+}
+
+.top-questions ul {
+    margin: 0.5rem 0 0 1.5rem;
+}
+
+/* Кнопка удаления события */
+.btn-danger {
+    background-color: rgba(220, 53, 69, 0.08);
+    border: 1px solid #f5c6cb;
+    color: #c82333;
+    padding: 6px 16px 6px 14px;
+    border-radius: 40px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    backdrop-filter: blur(2px);
+    height: 35px;
+}
+
+.btn-danger:hover {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px rgba(220, 53, 69, 0.2);
+}
+
+.btn-danger:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(220, 53, 69, 0.2);
+}
+
+/* Крестик через псевдоэлемент, если в HTML нет отдельной иконки */
+.btn-danger::before {
+    content: "✕";
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1;
+    transition: transform 0.1s ease;
+}
+
+.btn-danger:hover::before {
+    transform: scale(1.1);
+}
+
+/* Кнопка "Перенести" */
+.btn-move {
+    background-color: rgba(44, 125, 160, 0.08);
+    border: 1px solid #bbd4e8;
+    color: #2c7da0;
+    padding: 6px 16px 6px 14px;
+    border-radius: 40px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    backdrop-filter: blur(2px);
+    margin-right: 8px;
+}
+
+.btn-move:hover {
+    background-color: #2c7da0;
+    border-color: #2c7da0;
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px rgba(44, 125, 160, 0.2);
+}
+
+.btn-move:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(44, 125, 160, 0.2);
+}
+
+.btn-move::before {
+    content: "📅";
+    font-size: 1rem;
+    font-weight: normal;
+    margin-right: 4px;
+}
