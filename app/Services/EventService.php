@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\DTO\EventDto;
 use App\Jobs\ParseVacancyJob;
+use App\Models\Event;
 use App\Repositories\Contract\EventRepositoryInterface;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
@@ -53,5 +54,15 @@ class EventService
         $events = $this->db->getEvents($startDate, $endDate);
 
         return $events->groupBy(fn ($e) => $e->dateInterview->format('Y-m-d'));
+    }
+
+    /**
+     * Удаление события
+     * @param Event $event
+     * @return void
+     */
+    public function deleteEvent(Event $event): void
+    {
+        $this->db->deleteEvent($event);
     }
 }

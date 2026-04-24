@@ -11,5 +11,5 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');*/
 
 Route::post('/events', [EventController::class, 'store']);
-
 Route::get('/events', [EventController::class, 'index']);
+Route::delete('/events/{event}', [EventController::class, 'destroy '])->name('events.destroy ');

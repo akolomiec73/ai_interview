@@ -56,4 +56,15 @@ class EventRepository implements EventRepositoryInterface
 
         return $vacancy;
     }
+
+    /**
+     * Удаление события и связанной вакансии
+     */
+    public function deleteEvent(Event $event): void
+    {
+        if ($event->vacancy) {
+            $event->vacancy->delete();
+        }
+        $event->delete();
+    }
 }

@@ -18,4 +18,6 @@ interface EventRepositoryInterface
     public function getEvents(Carbon $startDate, Carbon $endDate): Collection;
 
     public function createVacancy(string $url, AnalyzedVacancyDto $aiResponse, int $eventId): Vacancy;
+
+    public function deleteEvent(Event $event): void;
 }
