@@ -1,11 +1,5 @@
 <!-- Модалка добавления события -->
-@extends('layouts.modal-layout')
-
-@section('modal-title', 'Добавить событие')
-
-@section('modal-id', 'modalCreateEvent')
-
-@section('modal-body')
+<x-modal id="modalCreateEvent" title="Добавить событие">
     <form id="addForm">
         <div class="form-group">
             <div class="form-error" id="errorMessage"></div>
@@ -27,4 +21,4 @@
             <button type="submit" class="btn-modal btn-submit">Сохранить</button>
         </div>
     </form>
-@endsection
+</x-modal>
