@@ -20,4 +20,6 @@ interface EventRepositoryInterface
     public function createVacancy(string $url, AnalyzedVacancyDto $aiResponse, int $eventId): Vacancy;
 
     public function deleteEvent(Event $event): void;
+
+    public function createNextStage(Carbon $newDate, string $comment, Event $event): Event;
 }

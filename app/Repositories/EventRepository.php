@@ -6,11 +6,13 @@ namespace App\Repositories;
 
 use App\DTO\AnalyzedVacancyDto;
 use App\DTO\EventDto;
+use App\Enums\EventStatus;
 use App\Models\Event;
 use App\Models\Vacancy;
 use App\Repositories\Contract\EventRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class EventRepository implements EventRepositoryInterface
 {
@@ -66,5 +68,24 @@ class EventRepository implements EventRepositoryInterface
             $event->vacancy->delete();
         }
         $event->delete();
+    }
+
+    /**
+     * Обновление статуса текущего события и добавление следующей стадии
+     */
+    public function createNextStage(Carbon $newDate, string $comment, Event $event): Event
+    {
+        return DB::transaction(function () use ($newDate, $comment, $event) {
+            $event->update(['status' => EventStatus::Completed]);
+
+            return Event::create([
+                'dateInterview' => $newDate,
+                'linkVacantion' => $event->linkVacantion,
+                'comment' => $comment,
+                'status' => EventStatus::Planned,
+                'parent_event_id' => $event->id,
+                'vacancy_id' => $event->vacancy_id,
+            ]);
+        });
     }
 }

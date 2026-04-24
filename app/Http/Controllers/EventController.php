@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateNextStageRequest;
 use App\Http\Requests\EventIndexRequest;
 use App\Http\Requests\EventRequest;
 use App\Models\Event;
 use App\Services\EventService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Carbon;
 use Illuminate\View\View;
 
 class EventController extends Controller
@@ -42,5 +44,18 @@ class EventController extends Controller
         $this->eventService->deleteEvent($event);
 
         return response()->json(['message' => 'Элемент успешно удалён']);
+    }
+
+    public function createNextStage(CreateNextStageRequest $request, Event $event): JsonResponse
+    {
+        try {
+            $newDate = Carbon::parse($request->dateInterview);
+
+            $newEvent = $this->eventService->createNextStage($newDate, $request->comment, $event);
+
+            return response()->json(['message' => 'Следующий этап создан', 'event' => $newEvent], 201);
+        } catch (\DomainException $e) {
+            return response()->json(['message' => $e->getMessage()], 422);
+        }
     }
 }

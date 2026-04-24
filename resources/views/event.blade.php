@@ -15,6 +15,7 @@
         <div class="content-header">
             <h1>📅 Собеседование</h1>
             <div>
+                <button type="button" class="btn btn-next-stage" id="nextStageBtn" data-modal-open="modalNextStageEvent" data-id="{{ $event->id }}">➕ Следующий этап</button>
                 <button type="button" class="btn btn-move" id="moveEventBtn" data-id="{{ $event->id }}">📅 Перенести</button>
                 <button type="button" class="btn btn-danger" data-modal-open="modalDeleteEvent" data-id="{{ $event->id }}" data-event-date="{{ $event->dateInterview->format('Y-m-d') }}">✕ Удалить</button>
             </div>
@@ -59,4 +60,5 @@
         </div>
     </div>
     @include('modals.confirm-delete-event-modal')
+    @include('modals.next-stage-event-modal')
 @endsection

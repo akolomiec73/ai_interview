@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\DTO\EventDto;
+use App\Enums\EventStatus;
 use App\Jobs\ParseVacancyJob;
 use App\Models\Event;
 use App\Repositories\Contract\EventRepositoryInterface;
@@ -58,11 +59,21 @@ class EventService
 
     /**
      * Удаление события
-     * @param Event $event
-     * @return void
      */
     public function deleteEvent(Event $event): void
     {
         $this->db->deleteEvent($event);
+    }
+
+    /**
+     * Создание следующей стадии события
+     */
+    public function createNextStage(Carbon $newDate, string $comment, Event $event): Event
+    {
+        if ($event->status === EventStatus::Completed || $event->status === EventStatus::Cancelled) {
+            throw new \DomainException('Нельзя создать следующий этап для завершённого или отменённого события');
+        }
+
+        return $this->db->createNextStage($newDate, $comment, $event);
     }
 }
