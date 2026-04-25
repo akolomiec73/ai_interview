@@ -22,10 +22,25 @@
     width: 120px;
 }
 
+/* Стили для блока вакансии */
 .vacancy-block {
-    margin-top: 2rem;
-    padding-top: 1rem;
-    border-top: 2px solid #eef2f6;
+    background: #ffffff;
+    border-radius: 1.5rem;
+    padding: 1.2rem;
+    border: 1px solid #eef2f6;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.vacancy-block h2 {
+    margin-bottom: 1rem;
+    color: #1f2b3c;
+    border-bottom: 2px solid #eef2f6;
+    padding-bottom: 0.5rem;
+}
+
+.vacancy-info p {
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
 }
 
 .top-questions {
@@ -39,3 +54,174 @@
     margin: 0.5rem 0 0 1.5rem;
 }
 
+.top-questions h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1f2b3c;
+    margin-bottom: 0.5rem;
+}
+
+.top-questions ul {
+    padding-left: 1.2rem;
+}
+
+.top-questions li {
+    margin-bottom: 0.4rem;
+    font-size: 0.85rem;
+}
+
+/* Двухколоночная сетка */
+.content-body-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.left-side {
+    flex: 2;
+    min-width: 250px;
+}
+
+.right-side {
+    flex: 2;
+    min-width: 250px;
+}
+
+/* ===== Карточки цепочки событий ===== */
+.event-card {
+    border: 1px solid #eef2f6;
+    border-radius: 1.5rem;
+    padding: 1rem 1.25rem;
+    transition: all 0.2s ease;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.event-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+/* Время события */
+.event-time {
+    font-size: 1.3rem;
+    font-weight: 700;
+    display: inline-block;
+    padding: 0.2rem 0.8rem;
+    border-radius: 40px;
+    margin-bottom: 0.5rem;
+}
+
+/* Заголовок этапа */
+.event-stage-title {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #6c7e91;
+    margin-bottom: 0.5rem;
+}
+
+/* Название компании */
+.company-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0f5c7a;
+}
+
+/* Комментарий в карточках */
+.event-comment {
+    font-size: 0.9rem;
+    color: #5b6e8c;
+    margin-top: 0.5rem;
+    padding: 0.4rem 0.6rem;
+    background: #fefce8;
+    border-left: 3px solid #f5bc70;
+}
+
+/* Карточка родительского события */
+.chain-parent {
+    border-left: 6px solid #a02c2c;
+    background: #f8fafd;
+    margin-bottom: 2rem;
+    opacity: 0.6;
+}
+
+/* Для родительской карточки – компактный вид */
+.chain-parent .event-time {
+    color: #a02c2c;
+    background: rgb(160 44 44 / 10%);
+}
+
+.chain-parent .event-comment {
+    border-left: 3px solid #8db5d6;
+}
+
+.chain-parent .event-stage-title {
+    color: #a02c2c;
+}
+
+/* Связующая линия между карточками (визуально) */
+.chain-parent::after {
+    content: '';
+    position: absolute;
+    bottom: -2rem;
+    left: 2rem;
+    width: 3px;
+    height: 2rem;
+    background: #cbdde9;
+}
+
+.chain-parent:hover {
+    background: #f1f6fd;
+    transform: translateX(4px);
+}
+
+/* Карточка текущего события – визуально главная */
+.current-event-card {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    border-left: 10px solid #10b981;
+}
+
+.current-event-card .event-stage-title {
+    color: #10b981;
+}
+
+.current-event-card .event-time {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+}
+
+/* Карточка дочернего события */
+.chain-child {
+    background: #f9fbfe;
+    border-left: 6px solid #1094b9;
+    margin-top: 2rem;
+    opacity: 0.6;
+}
+
+.chain-child::before {
+    content: '';
+    position: absolute;
+    top: -2rem;
+    left: 2rem;
+    width: 3px;
+    height: 2rem;
+    background: #cbdde9;
+}
+
+/* Дочерние карточки – стандартный вид, но с отличием */
+.chain-child .event-time {
+    color: #1081b9;
+    background: rgb(16 121 185 / 10%);
+}
+
+.chain-child .event-stage-title {
+    color: #1081b9;
+}
+
+.chain-child:hover {
+    background: #f1f6fd;
+    transform: translateX(4px);
+}

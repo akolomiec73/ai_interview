@@ -34,7 +34,7 @@ class EventController extends Controller
 
     public function show(Event $event): View
     {
-        $event->load('vacancy');
+        $event->load('vacancy', 'parentEvent', 'childEvents');
 
         return view('event', compact('event'));
     }
