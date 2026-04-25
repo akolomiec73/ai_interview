@@ -52,17 +52,17 @@
                     <div class="event-comment">{{ $event->comment }}</div>
                 </div>
 
-                {{-- КАРТОЧКИ ДОЧЕРНИХ СОБЫТИЙ (следующие этапы) --}}
-                @foreach($event->childEvents as $child)
+                {{-- ВСЕ СЛЕДУЮЩИЕ ЭТАПЫ (цепочка потомков) --}}
+                @foreach($descendants as $descendant)
                     <div class="event-card chain-child">
-                        <a href="{{ route('events.show', $child) }}" class="event-card-link">
+                        <a href="{{ route('events.show', $descendant) }}" class="event-card-link">
                             <div class="event-stage-title">Следующий этап</div>
-                            <div class="event-time">{{ $child->dateInterview->format('d.m H:i') }}</div>
+                            <div class="event-time">{{ $descendant->dateInterview->format('d.m H:i') }}</div>
                             <div class="event-name">
                                 Собеседование в
-                                <span class="company-name">{{ $child->vacancy->company }}</span>
+                                <span class="company-name">{{ $descendant->vacancy->company }}</span>
                             </div>
-                            <div class="event-comment">{{ $child->comment }}</div>
+                            <div class="event-comment">{{ $descendant->comment }}</div>
                         </a>
                     </div>
                 @endforeach

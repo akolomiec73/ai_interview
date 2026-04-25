@@ -36,9 +36,10 @@ class EventController extends Controller
     public function show(Event $event): View
     {
         $event->load('vacancy', 'parentEvent', 'childEvents');
-        $ancestors = $event->ancestors();
+        $ancestors = $event->ancestors(); // все предки
+        $descendants = $event->descendants(); // все потомки
 
-        return view('event', compact('event', 'ancestors'));
+        return view('event', compact('event', 'ancestors', 'descendants'));
     }
 
     public function destroy(Event $event): JsonResponse

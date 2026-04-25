@@ -63,4 +63,17 @@ class Event extends Model
 
         return $ancestors;
     }
+
+    public function descendants()
+    {
+        $descendants = collect();
+        $stack = $this->childEvents;
+        while ($stack->isNotEmpty()) {
+            $current = $stack->shift();
+            $descendants->push($current);
+            $stack = $stack->concat($current->childEvents);
+        }
+
+        return $descendants;
+    }
 }
