@@ -11,7 +11,10 @@
 @endpush
 
 @section('content-header')
-    <h1>📅 Собеседование</h1>
+    <h1>
+        <a href="{{ route('main') }}">📅</a>
+         Собеседование
+    </h1>
     <div>
         <button type="button" class="btn btn-next-stage" id="nextStageBtn" data-modal-open="modalNextStageEvent" data-id="{{ $event->id }}">➕ Добавить этап</button>
         <button type="button" class="btn btn-move" id="transferEventBtn" data-modal-open="modalTransferEvent" data-id="{{ $event->id }}">📅 Перенести</button>

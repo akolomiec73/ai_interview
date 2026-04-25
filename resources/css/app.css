@@ -107,3 +107,7 @@ body {
     text-decoration: underline;
     border-bottom-color: #1f5e7a;
 }
+
+a {
+    text-decoration: none;
+}
