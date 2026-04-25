@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (dayEvents.length) {
             dayDiv.classList.add('has-event');
-            const maxDisplay = 3;
+            const maxDisplay = 4;
             dayEvents.slice(0, maxDisplay).forEach(event => {
                 eventsContainer.appendChild(createEventElement(event));
             });
@@ -179,13 +179,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const moreEl = document.createElement('div');
                 moreEl.className = 'event-more';
                 moreEl.textContent = `+ ещё ${dayEvents.length - maxDisplay}`;
-                moreEl.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const messages = dayEvents.map(ev =>
-                        `• ${ev.linkVacantion || 'без ссылки'}${ev.comment ? ' – ' + ev.comment : ''}`
-                    );
-                    alert(`Все события на ${dateKey}:\n${messages.join('\n')}`);
-                });
                 eventsContainer.appendChild(moreEl);
             }
         }
