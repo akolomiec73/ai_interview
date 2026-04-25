@@ -154,10 +154,6 @@
     background: rgb(160 44 44 / 10%);
 }
 
-.chain-parent .event-comment {
-    border-left: 3px solid #8db5d6;
-}
-
 .chain-parent .event-stage-title {
     color: #a02c2c;
 }
