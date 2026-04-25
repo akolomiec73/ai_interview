@@ -6,7 +6,11 @@
 /* Кнопка "Перенести" */
 .btn-move {
     background-color: #4f8ee1;
-    margin-right: 8px;
+}
+
+/* Кнопка "добавить этап" */
+.btn-next-stage {
+    background-color: #10b981;
 }
 
 .detail-row {
