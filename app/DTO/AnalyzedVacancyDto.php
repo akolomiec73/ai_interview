@@ -6,13 +6,6 @@ namespace App\DTO;
 
 readonly class AnalyzedVacancyDto
 {
-    /**
-     * @param string $company
-     * @param string $salary
-     * @param string $formatWork
-     * @param string $skills
-     * @param array $topQuestions
-     */
     public function __construct(
         public string $company,
         public string $salary,
