@@ -10,6 +10,15 @@
         @stack('scripts')
     </head>
     <body>
-        @yield('content')
+        <div class="content">
+            <div class="content-header">
+                @yield('content-header')
+            </div>
+            @yield('content')
+            <div class="content-footer">
+                @yield('content-footer')
+            </div>
+        </div>
+        @yield('include-modals')
     </body>
 </html>
