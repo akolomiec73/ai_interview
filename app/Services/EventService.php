@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use App\DTO\EventDto;
+use App\DTO\CreateEventDto;
 use App\Enums\EventStatus;
 use App\Jobs\ParseVacancyJob;
 use App\Models\Event;
@@ -21,10 +21,10 @@ class EventService
     /**
      * Создание события
      */
-    public function addEvent(EventDto $data): void
+    public function addEvent(CreateEventDto $data): void
     {
         $event = $this->db->createEvent($data);
-        ParseVacancyJob::dispatch($data->linkVacantion, $event->id);
+        ParseVacancyJob::dispatch($data->linkVacancy, $event->id);
     }
 
     /**

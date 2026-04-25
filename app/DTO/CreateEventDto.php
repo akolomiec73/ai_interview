@@ -6,24 +6,24 @@ namespace App\DTO;
 
 use Carbon\Carbon;
 
-readonly class EventDto
+readonly class CreateEventDto
 {
     /**
-     * @param  Carbon  $dateInterview  дата собеса
-     * @param  string  $linkVacantion  ссылка на вакансию
+     * @param  Carbon  $dateEvent  дата события
+     * @param  string  $linkVacancy  ссылка на вакансию
      * @param  ?string  $comment  комментарий
      */
     public function __construct(
-        public Carbon $dateInterview,
-        public string $linkVacantion,
+        public Carbon $dateEvent,
+        public string $linkVacancy,
         public ?string $comment,
     ) {}
 
     public static function fromArray(array $data): self
     {
         return new self(
-            dateInterview: Carbon::parse($data['dateInterview']),
-            linkVacantion: $data['linkVacantion'],
+            dateEvent: Carbon::parse($data['dateInterview']),
+            linkVacancy: $data['linkVacantion'],
             comment: $data['comment'] ?? null,
         );
     }

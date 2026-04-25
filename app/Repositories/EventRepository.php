@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\DTO\AnalyzedVacancyDto;
-use App\DTO\EventDto;
+use App\DTO\CreateEventDto;
 use App\Enums\EventStatus;
 use App\Models\Event;
 use App\Models\Vacancy;
@@ -19,11 +19,11 @@ class EventRepository implements EventRepositoryInterface
     /**
      * Создание события
      */
-    public function createEvent(EventDto $data): Event
+    public function createEvent(CreateEventDto $data): Event
     {
         return Event::create([
-            'dateInterview' => $data->dateInterview,
-            'linkVacantion' => $data->linkVacantion,
+            'dateInterview' => $data->dateEvent,
+            'linkVacantion' => $data->linkVacancy,
             'comment' => $data->comment,
         ]);
     }
