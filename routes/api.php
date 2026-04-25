@@ -14,3 +14,4 @@ Route::post('/events', [EventController::class, 'store']);
 Route::get('/events', [EventController::class, 'index']);
 Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
 Route::post('/events/{event}/next-stage', [EventController::class, 'createNextStage']);
+Route::put('/events/{event}', [EventController::class, 'update']);

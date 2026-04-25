@@ -22,4 +22,6 @@ interface EventRepositoryInterface
     public function deleteEvent(Event $event): void;
 
     public function createNextStage(Carbon $newDate, string $comment, Event $event): Event;
+
+    public function transferEvent(Carbon $newDate, Event $event): void;
 }

@@ -76,4 +76,12 @@ class EventService
 
         return $this->db->createNextStage($newDate, $comment, $event);
     }
+
+    /**
+     * Перенос даты события
+     */
+    public function transferEvent(Carbon $newDate, Event $event): void
+    {
+        $this->db->transferEvent($newDate, $event);
+    }
 }

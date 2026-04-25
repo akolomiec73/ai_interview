@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateNextStageRequest;
 use App\Http\Requests\EventIndexRequest;
 use App\Http\Requests\EventRequest;
+use App\Http\Requests\TransferEventRequest;
 use App\Models\Event;
 use App\Services\EventService;
 use Illuminate\Http\JsonResponse;
@@ -57,5 +58,14 @@ class EventController extends Controller
         } catch (\DomainException $e) {
             return response()->json(['message' => $e->getMessage()], 422);
         }
+    }
+
+    public function update(TransferEventRequest $request, Event $event): JsonResponse
+    {
+        $newDate = Carbon::parse($request->dateTransferEvent);
+
+        $this->eventService->transferEvent($newDate, $event);
+
+        return response()->json(['message' => 'Событие успешно перенесено']);
     }
 }

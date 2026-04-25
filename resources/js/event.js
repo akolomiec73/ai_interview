@@ -1,8 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
-    const moveEventBtn = document.getElementById('moveEventBtn');
+    const transferEventBtn = document.getElementById('transferEventBtn');
     const nextStageBtn = document.getElementById('nextStageBtn');
     const formNextStageEvent = document.getElementById('formNextStageEvent');
+    const formTransferEvent = document.getElementById('formTransferEvent')
 
     /**
      * Удаление события
@@ -24,8 +25,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    async function transferEvent(eventId) {
+    async function transferEvent() {
+        const submitBtn = document.querySelector('.btn-submit');
+        const originalText = submitBtn.textContent;
+        const errorDiv = document.getElementById('errorMessage');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Сохранение...';
+        errorDiv.textContent = '';
+        try {
+            const dateTransferEvent = document.getElementById('dateTransferEvent').value.trim();
+            const eventId = transferEventBtn.getAttribute('data-id');
 
+            await axios.put(`/api/events/${eventId}`, {dateTransferEvent});
+            window.location.href = `/events/${eventId}`;
+        } catch (error) {
+            errorDiv.textContent = error.response?.data?.message || 'Произошла ошибка при сохранении';
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+        }
     }
 
     /**
@@ -65,15 +83,15 @@ document.addEventListener('DOMContentLoaded', () => {
         deleteEvent(eventId, eventDate);
     });
 
-    //перенос события
-    moveEventBtn.addEventListener('click', () => {
-        const eventId = moveEventBtn.getAttribute('data-id');
-        transferEvent(eventId);
-    });
-
     //Добавление следующей стадии
     formNextStageEvent.addEventListener('submit', function (e) {
         e.preventDefault();
         nextStageEvent();
     });
+
+    //Перенос события
+    formTransferEvent.addEventListener('submit', function (e) {
+        e.preventDefault();
+        transferEvent();
+    })
 });

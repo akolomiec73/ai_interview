@@ -88,4 +88,12 @@ class EventRepository implements EventRepositoryInterface
             ]);
         });
     }
+
+    /**
+     * Обновление даты события
+     */
+    public function transferEvent(Carbon $newDate, Event $event): void
+    {
+        $event->update(['dateInterview' => $newDate]);
+    }
 }
