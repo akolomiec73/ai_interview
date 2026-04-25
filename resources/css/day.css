@@ -11,15 +11,15 @@
     background: #ffffff;
     border: 1px solid #eef2f6;
     border-radius: 1.5rem;
-    padding: 1.25rem;
+    padding: 1rem 1.25rem;
     transition: all 0.2s;
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .event-item-card:hover {
-    border-color: #4aa304;
-    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2);
     transform: translateY(-2px);
+    border-color: #cbdde9;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
 }
 
 /*Время события*/
@@ -53,24 +53,24 @@
 .company-name {
     font-weight: 700;
     color: #0f5c7a;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 }
 
 .company-salary {
     background: #eef2e6;
     color: #2b6e3c;
-    font-weight: 700;
-    font-size: 0.9rem;
-    padding: 0.2rem 0.7rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    padding: 0.2rem 0.6rem;
     border-radius: 30px;
 }
 
 .company-format_work {
     background: #f0eef9;
     color: #5a4a8c;
-    font-weight: 700;
-    font-size: 0.9rem;
-    padding: 0.2rem 0.7rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    padding: 0.2rem 0.6rem;
     border-radius: 30px;
 }
 
@@ -79,9 +79,10 @@
     color: #2f4858;
     background: #f8fafc;
     padding: 0.5rem 0.8rem;
-    margin: 0.7rem 0;
+    margin: 0.5rem 0;
     line-height: 1.4;
     border-left: 3px solid #8db5d6;
+    font-size: 0.85rem;
 }
 
 /* Комментарий */
@@ -97,4 +98,83 @@
     text-decoration: none;
     color: inherit;
     cursor: pointer;
+}
+
+/* Верхняя строка: время и статус */
+.event-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+/* Основная информация */
+.event-main-info {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem;
+}
+
+.company-job-title {
+    font-weight: 500;
+    color: #4b5b6c;
+}
+
+.company-industry {
+    background: #f9eeee;
+    color: #8c4a4a;
+    font-weight: 500;
+    font-size: 0.8rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 30px;
+}
+
+.company-city {
+    background: #e8f1ff;
+    color: #4a4f8c;
+    font-weight: 500;
+    font-size: 0.8rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 30px;
+}
+
+/* Ссылка на вакансию */
+.link-vacancy {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+}
+.link-vacancy a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: #2c7da0;
+    text-decoration: none;
+    font-weight: 500;
+}
+.link-vacancy a:hover {
+    text-decoration: underline;
+}
+.link-vacancy a::before {
+    content: "🔗";
+    font-size: 0.8rem;
+}
+
+.event-status {
+    font-weight: 600;
+    font-size: 0.8rem;
+    padding: 0.25rem 0.8rem;
+    border-radius: 30px;
+}
+.status-planned {
+    background: #e6f4ea;
+    color: #10b981;
+}
+.status-completed {
+    background: #e7f0fa;
+    color: #2c7da0;
+}
+.status-cancelled {
+    background: #fee2e2;
+    color: #b91c1c;
 }

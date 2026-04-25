@@ -18,22 +18,31 @@
                 @foreach($events as $event)
                     <li class="event-item-card">
                         <a href="{{ route('events.show', $event) }}" class="event-card-link">
-                            <div class="event-time">
-                                {{  $event->dateInterview->format('H:i') }}
+                            <div class="event-header-row">
+                                <div class="event-time">{{ $event->dateInterview->format('H:i') }}</div>
+                                <div class="event-status {{ $event->status->color() }}">{{ $event->status->label() }}</div>
                             </div>
-                            <div class="event-name">
-                                Собеседование в
+
+                            <div class="event-main-info">
                                 <span class="company-name">{{ $event->vacancy->company }}</span>
+                                <span class="company-job-title">{{ $event->vacancy->job_title }}</span>
                                 <span class="company-salary">{{ $event->vacancy->salary }}</span>
                                 <span class="company-format_work">{{ $event->vacancy->format_work }}</span>
+                                @if($event->vacancy->industry !== 'Не указано')
+                                    <span class="company-industry">{{ $event->vacancy->industry }}</span>
+                                @endif
+                                @if($event->vacancy->city !== 'Не указано')
+                                    <span class="company-city">{{ $event->vacancy->city }}</span>
+                                @endif
                             </div>
+
                             <div class="company-skills">{{ $event->vacancy->skills }}</div>
-                            <div class="event-comment">{{ $event->comment }}</div>
+                            @if($event->comment)
+                                <div class="event-comment">{{ $event->comment }}</div>
+                            @endif
                         </a>
                         <div class="link-vacancy">
-                            <a href="{{ $event->linkVacantion }}" target="_blank" rel="noopener noreferrer">
-                                Ссылка на вакансию
-                            </a>
+                            <a href="{{ $event->linkVacantion }}" target="_blank" rel="noopener noreferrer">Ссылка на вакансию</a>
                         </div>
                     </li>
                 @endforeach
