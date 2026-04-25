@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
         eventEl.title = `${event.linkVacantion || 'Нет ссылки'}\n${event.comment || 'Без комментария'}`;
         eventEl.addEventListener('click', (e) => {
             e.stopPropagation();
-            alert(`📌 Событие\nСсылка: ${event.linkVacantion || '—'}\nКомментарий: ${event.comment || '—'}`);
+            window.location.href = `/events/${event.id}`;
         });
         return eventEl;
     }
