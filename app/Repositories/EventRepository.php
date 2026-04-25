@@ -94,6 +94,6 @@ class EventRepository implements EventRepositoryInterface
      */
     public function transferEvent(Carbon $newDate, Event $event): void
     {
-        $event->update(['dateInterview' => $newDate]);
+        $event->update(['dateInterview' => $newDate, 'status' => EventStatus::Transferred]);
     }
 }
