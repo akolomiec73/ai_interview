@@ -7,6 +7,9 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Валидация запроса для создания следующей стадии ивента
+ */
 class CreateNextStageRequest extends FormRequest
 {
     /**
@@ -35,7 +38,7 @@ class CreateNextStageRequest extends FormRequest
         return [
             'dateInterview.required' => 'Укажите дату и время следующего этапа',
             'dateInterview.after' => 'Дата и время должны быть в будущем',
-            'comment.max:250' => 'Превышена длина комментария',
+            'comment.max' => 'Превышена длина комментария',
         ];
     }
 }
