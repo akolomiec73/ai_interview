@@ -52,6 +52,10 @@ class EventRepository implements EventRepositoryInterface
                 'format_work' => $aiResponse->formatWork,
                 'skills' => $aiResponse->skills,
                 'top_questions' => $aiResponse->topQuestions,
+                'job_title' => $aiResponse->jobTitle,
+                'city' => $aiResponse->city,
+                'industry' => $aiResponse->industry,
+                'benefits' => $aiResponse->benefits,
             ]
         );
         Event::where('id', $eventId)->update(['vacancy_id' => $vacancy->id]);

@@ -12,6 +12,10 @@ readonly class AnalyzedVacancyDto
         public string $formatWork,
         public string $skills,
         public array $topQuestions,
+        public string $jobTitle,
+        public string $city,
+        public string $industry,
+        public string $benefits,
     ) {}
 
     public static function fromArray(array $data): self
@@ -22,6 +26,10 @@ readonly class AnalyzedVacancyDto
             formatWork: $data['formatWork'] ?? 'Не указано',
             skills: $data['skills'] ?? '',
             topQuestions: $data['topQuestions'] ?? [],
+            jobTitle: $data['jobTitle'] ?? 'Не указано',
+            city: $data['city'] ?? 'Не указано',
+            industry: $data['industry'] ?? 'Не указано',
+            benefits: $data['benefits'] ?? 'Не указано',
         );
     }
 }

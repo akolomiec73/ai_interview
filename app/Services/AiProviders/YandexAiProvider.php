@@ -66,26 +66,32 @@ readonly class YandexAiProvider implements AiProviderInterface
     {
         $text = $this->getTextFromUrl($url);
 
-        return "Проанализируй следующий текст вакансии и верни результат строго в формате JSON:, где:
-                    company - Название компании-работодателя,
-                    salary - Информация о зарплате,
-                    formatWork - Формат работы (например: 'Удаленно', 'Гибрид', 'В офисе' или 'Не указано'),
-                    skills - Ключевые требования к Hard skills через запятую,
-                    topQuestions - массив из 10 наиболее вероятных технических вопросов для подготовки к собеседованию по этой вакансии
-                Правила:
-                    - Если поле не найдено, используй значение 'Не указано'.
-                    - Для поля 'salary':
-                        - Если указан диапазон (например, '100 000 – 150 000 руб.'), верни верхнюю границу в формате 'до 150 000 руб.'.
-                        - Если указана только минимальная планка (например, 'от 120 000 руб.'), верни минимальное значение 'от 120 000 руб.').
-                        - Если число не указано, верни строку 'Не указано'.
-                    - Для поля 'skills': верни их в виде строки, перечисляя только конкретные технологии и инструменты.
-                    - Для поля 'topQuestions': верни массив из 10 конкретных технических вопросов по стеку вакансии.
+        return "Проанализируй следующий текст вакансии и верни результат строго в формате JSON, где:
+                    - company - Название компании-работодателя.
+                    - jobTitle - Название должности (например, 'PHP Developer', 'Team Lead', 'Project Manager').
+                    - city - Город, где находится офис.
+                    - industry - Сфера деятельности компании (например, 'Финтех', 'E-commerce', 'Логистика', 'Медицина').
+                    - salary - Информация о зарплате (см. правила ниже).
+                    - formatWork - Формат работы: 'Удаленно', 'Гибрид', 'В офисе' или 'Не указано'.
+                    - skills - Ключевые требования к Hard skills через запятую.
+                    - topQuestions - массив из 10 наиболее вероятных технических вопросов для подготовки к собеседованию по этой вакансии.
+                    - benefits - Условия работы, в формате строки через запятую: компенсации, корпоративный ноутбук, премии, ДМС, обучение и т.п. Перечисли кратко, без воды.
+
+                    Правила:
+                    - Если не смог определить информацию для поля, используй значение 'Не указано'. Не придумывай ничего.
+                    - Для salary:
+                        - Если диапазон (например, '100 000 – 150 000 руб.') → 'до 150 000 руб.'
+                        - Если только минимальная планка (например, 'от 120 000 руб.') → 'от 120 000 руб.'
+                        - Иначе 'Не указано'.
+                    - skills: только конкретные технологии, инструменты.
+                    - topQuestions: 10 конкретных технических вопросов по стеку вакансии.
                         Запрещены общие фразы 'как вы используете', 'расскажите об опыте', 'что вы знаете'.
-                        Каждый вопрос должен требовать объяснения механизма, сравнения, примера кода.
-                        Примеры правильных вопросов:
-                        1. 'Какие типы индексов в MySQL поддерживаются и в каком сценарии следует использовать хеш-индекс?'
-                        2. 'Как в PHP реализовать трейт с абстрактным методом и каковы ограничения такого подхода?'
-                    - Не добавляй никаких комментариев к своему ответу. Твой ответ должен содержать только валидный JSON. ".$text;
+                        Каждый вопрос должен требовать объяснения механизма, сравнения или примера кода.
+                    - benefits: выдели наиболее ценные пункты (например, 'ДМС', 'корпоративный ноут', 'ежегодная премия 15%', 'оплата курсов').
+                    - Не добавляй никаких комментариев. Ответ должен содержать только валидный JSON.
+
+                    Текст вакансии:
+                    {$text}";
     }
 
     /**
@@ -97,21 +103,47 @@ readonly class YandexAiProvider implements AiProviderInterface
     {
         $response = Http::withOptions(['verify' => false])->get($url);
         $html = $response->body();
+
         $dom = new \DOMDocument;
         libxml_use_internal_errors(true);
-        $dom->loadHTML($html);
+        $dom->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'));
         libxml_clear_errors();
-        $xpath = new \DOMXPath($dom);
-        // Удаляем все элементы script и style ...
-        foreach ($xpath->query('//script | //style | //meta | //link | //noscript') as $node) {
-            $node->parentNode->removeChild($node);
-        }
-        // Ищем div с классом "row-content"
-        $nodes = $xpath->query('//div[contains(@class, "row-content")]');
-        $description = $nodes->item(0)->textContent;
-        $description = preg_replace('/\s+/', ' ', $description);
 
-        return trim($description);
+        $xpath = new \DOMXPath($dom);
+
+        // Вспомогательная функция для получения текста по XPath
+        $getText = function (string $query) use ($xpath): string {
+            $nodes = $xpath->query($query);
+            if ($nodes && $nodes->length > 0) {
+                return trim($nodes->item(0)->textContent);
+            }
+
+            return '';
+        };
+
+        // Извлечение данных
+        $company = $getText('//span[contains(@class, "vacancy-company-name")]');
+        $title = $getText('//div[contains(@class, "vacancy-title")]');
+        $address = $getText('//span[@data-qa="vacancy-view-raw-address"]');
+        $format = $getText('//p[@data-qa="work-formats-text"]');
+        $desc = $getText('//div[@data-qa="vacancy-description"]');
+
+        // Очистка
+        $company = preg_replace('/\s+/', ' ', $company);
+        $title = preg_replace('/\s+/', ' ', $title);
+        $address = preg_replace('/\s+/', ' ', $address);
+        $format = preg_replace('/\s+/', ' ', $format);
+        $desc = strip_tags($desc);
+        $desc = preg_replace('/\s+/', ' ', trim($desc));
+
+        // Формируем итоговый текст для AI
+        $result = "Название компании: $company\n";
+        $result .= "Заголовок вакансии: $title\n";
+        $result .= "Адрес: $address\n";
+        $result .= "$format\n";
+        $result .= "Описание:\n$desc\n";
+
+        return trim($result);
     }
 
     /**
@@ -119,7 +151,7 @@ readonly class YandexAiProvider implements AiProviderInterface
      */
     private function parseResponse(string $content): ?AnalyzedVacancyDto
     {
-        $content = preg_replace('/^```json\s*|\s*```$/m', '', $content);
+        $content = preg_replace('/^```(?:json)?\s*|\s*```$/m', '', $content);
         $content = trim($content);
         $data = json_decode($content, true);
         if (json_last_error() !== JSON_ERROR_NONE) {

@@ -17,6 +17,10 @@ use Illuminate\Support\Carbon;
  * @property array $top_questions
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property string|null $job_title
+ * @property string|null $city
+ * @property string|null $industry
+ * @property string|null $benefits
  */
 class Vacancy extends Model
 {
@@ -29,6 +33,10 @@ class Vacancy extends Model
         'format_work',
         'skills',
         'top_questions',
+        'job_title',
+        'city',
+        'industry',
+        'benefits',
     ];
 
     protected $casts = [
