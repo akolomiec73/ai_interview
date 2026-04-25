@@ -26,20 +26,20 @@
     <div class="content-body">
         <div class="content-body-info">
             <div class="left-side">
-                {{-- КАРТОЧКА РОДИТЕЛЬСКОГО СОБЫТИЯ (если есть) --}}
-                @if($event->parentEvent)
+                {{-- ВСЕ ПРЕДЫДУЩИЕ ЭТАПЫ (цепочка предков) --}}
+                @foreach($ancestors as $ancestor)
                     <div class="event-card chain-parent">
-                        <a href="{{ route('events.show', $event->parentEvent) }}" class="event-card-link">
+                        <a href="{{ route('events.show', $ancestor) }}" class="event-card-link">
                             <div class="event-stage-title">Предыдущий этап</div>
-                            <div class="event-time">{{ $event->parentEvent->dateInterview->format('d.m H:i') }}</div>
+                            <div class="event-time">{{ $ancestor->dateInterview->format('d.m H:i') }}</div>
                             <div class="event-name">
                                 Собеседование в
-                                <span class="company-name">{{ $event->parentEvent->vacancy->company }}</span>
+                                <span class="company-name">{{ $ancestor->vacancy->company }}</span>
                             </div>
-                            <div class="event-comment">{{ $event->parentEvent->comment }}</div>
+                            <div class="event-comment">{{ $ancestor->comment }}</div>
                         </a>
                     </div>
-                @endif
+                @endforeach
 
                 {{-- КАРТОЧКА СОБЫТИЯ --}}
                 <div class="event-card current-event-card">

@@ -51,4 +51,16 @@ class Event extends Model
     {
         return $this->hasMany(Event::class, 'parent_event_id');
     }
+
+    public function ancestors()
+    {
+        $ancestors = collect();
+        $current = $this;
+        while ($current->parentEvent) {
+            $ancestors->prepend($current->parentEvent);
+            $current = $current->parentEvent;
+        }
+
+        return $ancestors;
+    }
 }
