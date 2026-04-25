@@ -289,11 +289,11 @@ document.addEventListener('DOMContentLoaded', () => {
         errorDiv.textContent = '';
 
         try {
-            const dateInterview = document.getElementById('dateInterview').value.trim();
-            const linkVacantion = document.getElementById('linkVacantion').value.trim();
+            const dateEvent = document.getElementById('dateEvent').value.trim();
+            const linkVacancy = document.getElementById('linkVacancy').value.trim();
             const comment = document.getElementById('comment').value.trim();
 
-            await axios.post('/api/events', {dateInterview, linkVacantion, comment});
+            await axios.post('/api/events', {dateEvent, linkVacancy, comment});
             window.modal.close('modalCreateEvent');
             if (typeof window.loadAndRender === 'function') {
                 window.loadAndRender();

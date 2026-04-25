@@ -20,8 +20,8 @@ class EventRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'dateInterview' => 'required|date',
-            'linkVacantion' => 'required|url',
+            'dateEvent' => 'required|date',
+            'linkVacancy' => 'required|url',
             'comment' => 'nullable|string|max:250',
         ];
     }
@@ -29,10 +29,10 @@ class EventRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'dateInterview.required' => 'Поле "Дата интервью" обязательно для заполнения.',
-            'dateInterview.date' => 'Некорректный формат даты',
-            'linkVacantion.required' => 'Поле "Ссылка на вакансию" обязательно для заполнения.',
-            'linkVacantion.url' => 'Некорректная ссылка',
+            'dateEvent.required' => 'Поле "Дата интервью" обязательно для заполнения.',
+            'dateEvent.date' => 'Некорректный формат даты',
+            'linkVacancy.required' => 'Поле "Ссылка на вакансию" обязательно для заполнения.',
+            'linkVacancy.url' => 'Некорректная ссылка',
             'comment.max' => 'Комментарий не может быть длиннее 250 символов.',
         ];
     }

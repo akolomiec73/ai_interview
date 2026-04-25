@@ -22,8 +22,8 @@ readonly class CreateEventDto
     public static function fromArray(array $data): self
     {
         return new self(
-            dateEvent: Carbon::parse($data['dateInterview']),
-            linkVacancy: $data['linkVacantion'],
+            dateEvent: Carbon::parse($data['dateEvent']),
+            linkVacancy: $data['linkVacancy'],
             comment: $data['comment'] ?? null,
         );
     }

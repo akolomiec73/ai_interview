@@ -5,12 +5,12 @@
             <div class="form-error" id="errorMessage"></div>
         </div>
         <div class="form-group">
-            <label for="dateInterview">Дата и время</label>
-            <input type="datetime-local" id="dateInterview" name="dateInterview" required>
+            <label for="dateEvent">Дата и время</label>
+            <input type="datetime-local" id="dateEvent" name="dateEvent" required>
         </div>
         <div class="form-group">
-            <label for="linkVacantion">Ссылка на вакансию</label>
-            <input type="text" id="linkVacantion" name="linkVacantion" required placeholder="Укажите ссылку на вакансию hh">
+            <label for="linkVacancy">Ссылка на вакансию</label>
+            <input type="text" id="linkVacancy" name="linkVacancy" required placeholder="Укажите ссылку на вакансию hh">
         </div>
         <div class="form-group">
             <label for="comment">Комментарий</label>
