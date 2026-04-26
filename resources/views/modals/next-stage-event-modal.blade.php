@@ -1,16 +1,26 @@
-<!-- Модалка добавления следующей стадии события -->
-<x-modal id="modalNextStageEvent" title="Добавить следующую стадию">
+<!-- Модалка добавления следующего этапа события -->
+<x-modal id="modalNextStageEvent" title="Добавить следующий этап">
     <form id="formNextStageEvent">
         <div class="form-group">
             <div class="form-error" id="errorMessage"></div>
         </div>
         <div class="form-group">
-            <label for="dateInterview">Дата и время</label>
-            <input type="datetime-local" id="dateInterviewNext" name="dateInterview" required>
+            <label for="eventStageNext">Этап собеседования</label>
+            <select id="eventStageNext" name="eventStageNext" required>
+                @foreach(\App\Enums\EventStage::cases() as $stage)
+                    <option value="{{ $stage->value }}" {{ $stage->value === 'technical_meet' ? 'selected' : '' }}>
+                        {{ $stage->label() }}
+                    </option>
+                @endforeach
+            </select>
         </div>
         <div class="form-group">
-            <label for="comment">Комментарий</label>
-            <textarea id="commentNext" name="comment" placeholder="Дополнительная информация..."></textarea>
+            <label for="dateEventNext">Дата и время</label>
+            <input type="datetime-local" id="dateEventNext" name="dateEventNext" required>
+        </div>
+        <div class="form-group">
+            <label for="commentNext">Комментарий</label>
+            <textarea id="commentNext" name="commentNext" placeholder="Дополнительная информация..."></textarea>
         </div>
         <div class="form-actions">
             <button type="button" class="btn-modal btn-cancel">Отмена</button>

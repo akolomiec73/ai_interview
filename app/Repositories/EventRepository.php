@@ -77,18 +77,19 @@ class EventRepository implements EventRepositoryInterface
     /**
      * Обновление статуса текущего события и добавление следующей стадии
      */
-    public function createNextStage(Carbon $newDate, string $comment, Event $event): Event
+    public function createNextStage(Carbon $date, string $comment, Event $event, string $stage): Event
     {
-        return DB::transaction(function () use ($newDate, $comment, $event) {
+        return DB::transaction(function () use ($date, $comment, $event, $stage) {
             $event->update(['status' => EventStatus::Completed]);
 
             return Event::create([
-                'dateInterview' => $newDate,
+                'dateInterview' => $date,
                 'linkVacantion' => $event->linkVacantion,
                 'comment' => $comment,
                 'status' => EventStatus::Planned,
                 'parent_event_id' => $event->id,
                 'vacancy_id' => $event->vacancy_id,
+                'stage' => $stage,
             ]);
         });
     }

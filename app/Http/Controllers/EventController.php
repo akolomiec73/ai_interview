@@ -52,9 +52,7 @@ class EventController extends Controller
     public function createNextStage(CreateNextStageRequest $request, Event $event): JsonResponse
     {
         try {
-            $newDate = Carbon::parse($request->dateInterview);
-
-            $newEvent = $this->eventService->createNextStage($newDate, $request->comment, $event);
+            $newEvent = $this->eventService->createNextStage($request->dateEvent, $request->comment, $event, $request->eventStage);
 
             return response()->json(['message' => 'Следующий этап создан', 'event' => $newEvent], 201);
         } catch (\DomainException $e) {

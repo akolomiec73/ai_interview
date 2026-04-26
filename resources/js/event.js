@@ -60,11 +60,12 @@ document.addEventListener('DOMContentLoaded', () => {
         errorDiv.textContent = '';
 
         try {
-            const dateInterview = document.getElementById('dateInterviewNext').value.trim();
+            const dateEvent = document.getElementById('dateEventNext').value.trim();
             const comment = document.getElementById('commentNext').value.trim();
             const eventId = nextStageBtn.getAttribute('data-id');
+            const eventStage = document.getElementById('eventStageNext').value;
 
-            await axios.post(`/api/events/${eventId}/next-stage`, {dateInterview, comment});
+            await axios.post(`/api/events/${eventId}/next-stage`, {dateEvent, comment, eventStage});
             window.location.href = `/events/${eventId}`;
         } catch (error) {
             errorDiv.textContent = error.response?.data?.message || 'Произошла ошибка при сохранении';

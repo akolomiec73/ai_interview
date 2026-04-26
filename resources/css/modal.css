@@ -144,3 +144,32 @@ textarea {
 .form-error {
     color: red;
 }
+
+/* Стили для выпадающего списка */
+select {
+    width: 100%;
+    padding: 12px 14px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    border: 1px solid #cfdfed;
+    border-radius: 20px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: 0.2s;
+    outline: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236c7e91' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 16px;
+}
+
+select:focus {
+    border-color: #10b981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+}
+
+/* Для тем, где нужна кастомная стрелка, можно убрать стандартную у браузера */
+select::-ms-expand {
+    display: none;
+}

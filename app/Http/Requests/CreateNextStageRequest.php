@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Http\Requests;
 
+use App\Enums\EventStage;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 /**
  * Валидация запроса для создания следующей стадии ивента
@@ -28,17 +30,20 @@ class CreateNextStageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'dateInterview' => 'required|date|after:now',
+            'dateEvent' => 'required|date|after:now',
             'comment' => 'nullable|string|max:250',
+            'eventStage' => ['required', Rule::in(EventStage::values())],
         ];
     }
 
     public function messages(): array
     {
         return [
-            'dateInterview.required' => 'Укажите дату и время следующего этапа',
-            'dateInterview.after' => 'Дата и время должны быть в будущем',
+            'dateEvent.required' => 'Укажите дату и время следующего этапа',
+            'dateEvent.after' => 'Дата и время должны быть в будущем',
             'comment.max' => 'Превышена длина комментария',
+            'eventStage.required' => 'Выберите этап собеседования',
+            'eventStage.in' => 'Выбран недопустимый этап',
         ];
     }
 }

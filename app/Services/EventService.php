@@ -68,13 +68,14 @@ class EventService
     /**
      * Создание следующей стадии события
      */
-    public function createNextStage(Carbon $newDate, string $comment, Event $event): Event
+    public function createNextStage(string $date, string $comment, Event $event, string $stage): Event
     {
         if ($event->status === EventStatus::Completed || $event->status === EventStatus::Cancelled) {
             throw new \DomainException('Нельзя создать следующий этап для завершённого или отменённого события');
         }
+        $date = Carbon::parse($date);
 
-        return $this->db->createNextStage($newDate, $comment, $event);
+        return $this->db->createNextStage($date, $comment, $event, $stage);
     }
 
     /**
