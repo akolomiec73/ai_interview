@@ -170,3 +170,8 @@ a {
     padding: 0.2rem 0.6rem;
     border-radius: 30px;
 }
+
+.event-stage {
+    font-weight: 700;
+    color: #0f5c7a;
+}

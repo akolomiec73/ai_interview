@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Enums\EventStage;
 use App\Enums\EventStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
@@ -17,7 +18,8 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $updated_at
  * @property ?int $vacancy_id
  * @property EventStatus $status
- * @property ?int parent_event_id
+ * @property ?int $parent_event_id
+ * @property EventStage $stage
  */
 class Event extends Model
 {
@@ -30,11 +32,13 @@ class Event extends Model
         'vacancy_id',
         'status',
         'parent_event_id',
+        'stage',
     ];
 
     protected $casts = [
         'dateInterview' => 'datetime',
         'status' => EventStatus::class,
+        'stage' => EventStage::class,
     ];
 
     public function vacancy()

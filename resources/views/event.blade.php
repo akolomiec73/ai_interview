@@ -35,10 +35,7 @@
                                 <div class="event-status {{ $ancestor->status->color() }}">{{ $ancestor->status->label() }}</div>
                             </div>
                             <div class="event-time">{{ $ancestor->dateInterview->translatedFormat('d F H:i') }}</div>
-                            <div class="event-name">
-                                Собеседование в
-                                <span class="company-name">{{ $ancestor->vacancy->company }}</span>
-                            </div>
+                            <div class="event-stage">{{ $ancestor->stage->label() }}</div>
                             <div class="event-comment">{{ $ancestor->comment }}</div>
                         </a>
                     </div>
@@ -51,10 +48,7 @@
                         <div class="event-status {{ $event->status->color() }}">{{ $event->status->label() }}</div>
                     </div>
                     <div class="event-time">{{ $event->dateInterview->translatedFormat('d F H:i') }}</div>
-                    <div class="event-name">
-                        Собеседование в
-                        <span class="company-name">{{ $event->vacancy->company }}</span>
-                    </div>
+                    <div class="event-stage">{{ $event->stage->label() }}</div>
                     <div class="event-comment">{{ $event->comment }}</div>
                 </div>
 
@@ -67,10 +61,7 @@
                                 <div class="event-status {{ $descendant->status->color() }}">{{ $descendant->status->label() }}</div>
                             </div>
                             <div class="event-time">{{ $descendant->dateInterview->translatedFormat('d F H:i') }}</div>
-                            <div class="event-name">
-                                Собеседование в
-                                <span class="company-name">{{ $descendant->vacancy->company }}</span>
-                            </div>
+                            <div class="event-stage">{{ $descendant->stage->label() }}</div>
                             <div class="event-comment">{{ $descendant->comment }}</div>
                         </a>
                     </div>
