@@ -84,4 +84,15 @@ class EventService
     {
         $this->db->transferEvent($newDate, $event);
     }
+
+    /**
+     * Получение ближайших события за 24 часа
+     */
+    public function getUpcomingEvents(): Collection
+    {
+        $now = Carbon::now();
+        $oneDayLater = $now->copy()->addHours(24);
+
+        return $this->db->getUpcomingEvents($now, $oneDayLater);
+    }
 }

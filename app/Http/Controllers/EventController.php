@@ -70,4 +70,12 @@ class EventController extends Controller
 
         return response()->json(['message' => 'Событие успешно перенесено']);
     }
+
+    public function upcoming(): JsonResponse
+    {
+        // TODO: сделать кеширование
+        $events = $this->eventService->getUpcomingEvents();
+
+        return response()->json($events);
+    }
 }

@@ -12,6 +12,7 @@ export default defineConfig({
                 'resources/js/app.js',
                 'resources/js/calendar.js',
                 'resources/js/create-event-modal.js',
+                'resources/js/notifications.js',
             ],
             refresh: true,
         }),

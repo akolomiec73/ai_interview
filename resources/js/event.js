@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const eventId = transferEventBtn.getAttribute('data-id');
 
             await axios.put(`/api/events/${eventId}`, {dateTransferEvent});
+            window.removeShownEvent(eventId);
             window.location.href = `/events/${eventId}`;
         } catch (error) {
             errorDiv.textContent = error.response?.data?.message || 'Произошла ошибка при сохранении';

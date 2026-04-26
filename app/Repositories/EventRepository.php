@@ -100,4 +100,15 @@ class EventRepository implements EventRepositoryInterface
     {
         $event->update(['dateInterview' => $newDate, 'status' => EventStatus::Transferred]);
     }
+
+    /**
+     * Получение ближайших событий за 24 часа
+     */
+    public function getUpcomingEvents(Carbon $now, Carbon $oneDayLater): Collection
+    {
+        return Event::with('vacancy')
+            ->whereBetween('dateInterview', [$now, $oneDayLater])
+            ->orderBy('dateInterview', 'asc')
+            ->get(['id', 'dateInterview', 'vacancy_id']);
+    }
 }
