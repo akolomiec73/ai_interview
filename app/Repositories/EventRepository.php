@@ -68,9 +68,6 @@ class EventRepository implements EventRepositoryInterface
      */
     public function deleteEvent(Event $event): void
     {
-        if ($event->vacancy) {
-            $event->vacancy->delete();
-        }
         $event->delete();
     }
 
