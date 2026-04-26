@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace App\Http\Requests;
 
 use App\DTO\CreateEventDto;
+use App\Enums\EventStage;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 /**
  * Валидация запроса для добавления события
@@ -23,6 +25,7 @@ class EventRequest extends FormRequest
             'dateEvent' => 'required|date',
             'linkVacancy' => 'required|url',
             'comment' => 'nullable|string|max:250',
+            'eventStage' => ['required', Rule::in(EventStage::values())],
         ];
     }
 
@@ -34,6 +37,8 @@ class EventRequest extends FormRequest
             'linkVacancy.required' => 'Поле "Ссылка на вакансию" обязательно для заполнения.',
             'linkVacancy.url' => 'Некорректная ссылка',
             'comment.max' => 'Комментарий не может быть длиннее 250 символов.',
+            'eventStage.required' => 'Выберите этап собеседования',
+            'eventStage.in' => 'Выбран недопустимый этап',
         ];
     }
 

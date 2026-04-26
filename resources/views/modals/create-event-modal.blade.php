@@ -9,6 +9,14 @@
             <input type="datetime-local" id="dateEvent" name="dateEvent" required>
         </div>
         <div class="form-group">
+            <label for="eventStage">Этап</label>
+            <select id="eventStage" name="eventStage" required>
+                @foreach(\App\Enums\EventStage::cases() as $stage)
+                    <option value="{{ $stage->value }}">{{ $stage->label() }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
             <label for="linkVacancy">Ссылка на вакансию</label>
             <input type="text" id="linkVacancy" name="linkVacancy" required placeholder="Укажите ссылку на вакансию hh">
         </div>

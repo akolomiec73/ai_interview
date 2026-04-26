@@ -25,6 +25,7 @@ class EventRepository implements EventRepositoryInterface
             'dateInterview' => $data->dateEvent,
             'linkVacantion' => $data->linkVacancy,
             'comment' => $data->comment,
+            'stage' => $data->eventStage,
         ]);
     }
 

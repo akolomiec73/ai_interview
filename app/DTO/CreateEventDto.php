@@ -12,11 +12,13 @@ readonly class CreateEventDto
      * @param  Carbon  $dateEvent  дата события
      * @param  string  $linkVacancy  ссылка на вакансию
      * @param  ?string  $comment  комментарий
+     * @param  string  $eventStage стадия
      */
     public function __construct(
         public Carbon $dateEvent,
         public string $linkVacancy,
         public ?string $comment,
+        public string $eventStage,
     ) {}
 
     public static function fromArray(array $data): self
@@ -25,6 +27,7 @@ readonly class CreateEventDto
             dateEvent: Carbon::parse($data['dateEvent']),
             linkVacancy: $data['linkVacancy'],
             comment: $data['comment'] ?? null,
+            eventStage: $data['eventStage'],
         );
     }
 }

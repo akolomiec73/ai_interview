@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
         eventEl.className = 'event-item '+event.stage_color;
         const timeStr = getEventTime(event.dateInterview);
         eventEl.textContent = `${timeStr} ${event.stage_label}`;
-        eventEl.title = `${event.stage_label}\nКомпания: ${event.vacancy.company}\nВакансия: ${event.vacancy.job_title}`;
+        eventEl.title = `${event.stage_label}\nКомпания: ${event.vacancy?.company ?? 'Нет данных'}\nВакансия: ${event.vacancy?.job_title ?? 'Нет данных'}`;
         eventEl.addEventListener('click', (e) => {
             e.stopPropagation();
             window.location.href = `/events/${event.id}`;
@@ -292,8 +292,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const dateEvent = document.getElementById('dateEvent').value.trim();
             const linkVacancy = document.getElementById('linkVacancy').value.trim();
             const comment = document.getElementById('comment').value.trim();
+            const eventStage = document.getElementById('eventStage').value;
 
-            await axios.post('/api/events', {dateEvent, linkVacancy, comment});
+            await axios.post('/api/events', {dateEvent, linkVacancy, comment, eventStage});
             window.modal.close('modalCreateEvent');
             if (typeof window.loadAndRender === 'function') {
                 window.loadAndRender();
