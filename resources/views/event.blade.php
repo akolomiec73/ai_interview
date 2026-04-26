@@ -7,7 +7,7 @@
 @endpush
 
 @push('scripts')
-    @vite(['resources/js/app.js', 'resources/js/event.js', 'resources/js/modal.js'])
+    @vite(['resources/js/event.js', 'resources/js/modal.js'])
 @endpush
 
 @section('content-header')
