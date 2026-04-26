@@ -30,8 +30,11 @@
                 @foreach($ancestors as $ancestor)
                     <div class="event-card chain-parent">
                         <a href="{{ route('events.show', $ancestor) }}" class="event-card-link">
-                            <div class="event-stage-title">Предыдущий этап</div>
-                            <div class="event-time">{{ $ancestor->dateInterview->format('d.m H:i') }}</div>
+                            <div class="event-header-row">
+                                <div class="event-stage-title">Предыдущий этап</div>
+                                <div class="event-status {{ $ancestor->status->color() }}">{{ $ancestor->status->label() }}</div>
+                            </div>
+                            <div class="event-time">{{ $ancestor->dateInterview->translatedFormat('d F H:i') }}</div>
                             <div class="event-name">
                                 Собеседование в
                                 <span class="company-name">{{ $ancestor->vacancy->company }}</span>
@@ -43,8 +46,11 @@
 
                 {{-- КАРТОЧКА СОБЫТИЯ --}}
                 <div class="event-card current-event-card">
-                    <div class="event-stage-title">Текущий этап</div>
-                    <div class="event-time">{{ $event->dateInterview->format('d.m H:i') }}</div>
+                    <div class="event-header-row">
+                        <div class="event-stage-title">Текущий этап</div>
+                        <div class="event-status {{ $event->status->color() }}">{{ $event->status->label() }}</div>
+                    </div>
+                    <div class="event-time">{{ $event->dateInterview->translatedFormat('d F H:i') }}</div>
                     <div class="event-name">
                         Собеседование в
                         <span class="company-name">{{ $event->vacancy->company }}</span>
@@ -56,8 +62,11 @@
                 @foreach($descendants as $descendant)
                     <div class="event-card chain-child">
                         <a href="{{ route('events.show', $descendant) }}" class="event-card-link">
-                            <div class="event-stage-title">Следующий этап</div>
-                            <div class="event-time">{{ $descendant->dateInterview->format('d.m H:i') }}</div>
+                            <div class="event-header-row">
+                                <div class="event-stage-title">Следующий этап</div>
+                                <div class="event-status {{ $descendant->status->color() }}">{{ $descendant->status->label() }}</div>
+                            </div>
+                            <div class="event-time">{{ $descendant->dateInterview->translatedFormat('d F H:i') }}</div>
                             <div class="event-name">
                                 Собеседование в
                                 <span class="company-name">{{ $descendant->vacancy->company }}</span>
@@ -69,21 +78,70 @@
             </div>
             <div class="right-side">
                 <div class="vacancy-block">
-                    <h2>Вакансия</h2>
-                    <div class="vacancy-info">
-                        <p><strong>Компания:</strong> {{ $event->vacancy->company }}</p>
-                        <p><strong>Зарплата:</strong> {{ $event->vacancy->salary }}</p>
-                        <p><strong>Формат работы:</strong> {{ $event->vacancy->format_work }}</p>
-                        <p><strong>Навыки:</strong> {{ $event->vacancy->skills }}</p>
-                        <p><strong>Ссылка:</strong> <span class="link-vacancy"><a href="{{ $event->vacancy->url }}" target="_blank">открыть вакансию</a></span></p>
-                        <div class="top-questions">
-                            <h3>Топ вопросов для подготовки</h3>
-                            <ul>
-                                @foreach($event->vacancy->top_questions as $question)
-                                    <li>{{ $question }}</li>
-                                @endforeach
-                            </ul>
+                    <div class="vacancy-header">
+                        <h2>Вакансия</h2>
+                        <span class="value job-title">{{ $event->vacancy->job_title }}</span>
+                    </div>
+
+                    <div class="vacancy-grid">
+                        <div class="vacancy-item">
+                            <span class="label">Компания</span>
+                            <div>
+                                <span class="value company">{{ $event->vacancy->company }}</span>
+                                <span class="company-industry">{{ $event->vacancy->industry }}</span>
+                            </div>
                         </div>
+                        <div class="vacancy-item">
+                            <span class="label">Зарплата</span>
+                            <span class="value salary">{{ $event->vacancy->salary }}</span>
+                        </div>
+                        <div class="vacancy-item">
+                            <span class="label">Формат работы</span>
+                            <span class="value">{{ $event->vacancy->format_work }}</span>
+                        </div>
+                        <div class="vacancy-item">
+                            <span class="label">Город</span>
+                            <span class="value">{{ $event->vacancy->city}}</span>
+                        </div>
+                    </div>
+
+                    @if($event->vacancy->benefits !== 'Не указано')
+                    <div class="benefits-block">
+                        <span class="label">Плюшки</span>
+                        <div class="value benefits-list">
+                            @foreach(explode(',', $event->vacancy->benefits) as $benefit)
+                                @if(trim($benefit))
+                                    <span class="benefit-badge">{{ trim($benefit) }}</span>
+                                @endif
+                            @endforeach
+                        </div>
+                    </div>
+                    @endif
+
+                    <div class="skills-block">
+                        <span class="label">Технологии и навыки</span>
+                        <div class="skills-list">
+                            @foreach(explode(',', $event->vacancy->skills) as $skill)
+                                @if(trim($skill))
+                                    <span class="skill-badge">{{ trim($skill) }}</span>
+                                @endif
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <div class="vacancy-footer">
+                        <div class="link-vacancy-outline">
+                            <a href="{{ $event->vacancy->url }}" target="_blank" rel="noopener noreferrer">Открыть вакансию</a>
+                        </div>
+                    </div>
+
+                    <div class="top-questions">
+                        <h3>📋 Топ вопросов для подготовки</h3>
+                        <ul>
+                            @foreach($event->vacancy->top_questions as $question)
+                                <li>{{ $question }}</li>
+                            @endforeach
+                        </ul>
                     </div>
                 </div>
             </div>
