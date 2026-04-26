@@ -131,3 +131,37 @@
     color: inherit;
     cursor: pointer;
 }
+
+.block-time-stage {
+    display: flex;
+    align-items: center;
+}
+
+.event-stage {
+    font-size: 1.3rem;
+}
+
+.stage-first-meet {
+    background-color: rgba(44, 125, 160, 0.05);
+    border-left: 4px solid #2c7da0;
+}
+
+.stage-technical-meet {
+    background-color: rgba(16, 185, 129, 0.05);
+    border-left: 4px solid #10b981;
+}
+
+.stage-test-task {
+    background-color: rgba(147, 51, 234, 0.05);
+    border-left: 4px solid #9333ea;
+}
+
+.stage-offer-waiting {
+    background-color: rgba(255, 215, 0, 0.08);
+    border-left: 4px solid #eab308;
+}
+
+.stage-extra-meet {
+    background-color: rgb(185 16 16 / 5%);
+    border-left: 4px solid #b91031;
+}

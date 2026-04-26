@@ -16,10 +16,13 @@
         @if($events->count())
             <ul class="events-list">
                 @foreach($events as $event)
-                    <li class="event-item-card">
+                    <li class="event-item-card {{ $event->stage->color() }}">
                         <a href="{{ route('events.show', $event) }}" class="event-card-link">
                             <div class="event-header-row">
-                                <div class="event-time">{{ $event->dateInterview->format('H:i') }}</div>
+                                <div class="block-time-stage">
+                                    <div class="event-time">{{ $event->dateInterview->format('H:i') }}</div>
+                                    <div class="event-stage">{{ $event->stage->label() }}</div>
+                                </div>
                                 <div class="event-status {{ $event->status->color() }}">{{ $event->status->label() }}</div>
                             </div>
 
