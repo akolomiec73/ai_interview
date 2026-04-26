@@ -1,3 +1,8 @@
+/* ----------------------------------------------
+   Стили модальных окон (общие для всех модалок)
+---------------------------------------------- */
+
+/* Затемнённый фон */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -14,13 +19,12 @@
     opacity: 0;
     transition: visibility 0.2s, opacity 0.2s ease;
 }
-
 .modal-overlay.active {
     visibility: visible;
     opacity: 1;
 }
 
-/* Модальное окно */
+/* Окно модалки */
 .modal {
     background: white;
     width: 100%;
@@ -31,12 +35,11 @@
     transition: transform 0.2s ease;
     overflow: hidden;
 }
-
 .modal-overlay.active .modal {
     transform: scale(1);
 }
 
-/* Заголовок модалки */
+/* Шапка */
 .modal-header {
     display: flex;
     justify-content: space-between;
@@ -44,7 +47,6 @@
     padding: 1.25rem 1.5rem;
     border-bottom: 1px solid #eef2f6;
 }
-
 .modal-header h2 {
     font-size: 1.5rem;
     font-weight: 600;
@@ -52,6 +54,7 @@
     margin: 0;
 }
 
+/* Кнопка закрытия */
 .close-btn {
     background: none;
     border: none;
@@ -62,27 +65,25 @@
     transition: color 0.2s;
     padding: 0 6px;
 }
-
 .close-btn:hover {
     color: #1f2b3c;
 }
 
-/* Тело формы */
+/* Тело модалки */
 .modal-body {
     padding: 1.5rem;
 }
 
+/* Группа полей формы */
 .form-group {
     margin-bottom: 1.25rem;
 }
-
 label {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 500;
     color: #2c3e50;
 }
-
 input, textarea {
     width: 100%;
     padding: 12px 14px;
@@ -94,25 +95,22 @@ input, textarea {
     outline: none;
     background: #fff;
 }
-
 input:focus, textarea:focus {
     border-color: #10b981;
     box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
 }
-
 textarea {
     resize: vertical;
     min-height: 80px;
 }
 
-/* Кнопки формы */
+/* Кнопки внутри модалки */
 .form-actions {
     display: flex;
     justify-content: flex-end;
     gap: 12px;
     margin-top: 1.5rem;
 }
-
 .btn-modal {
     border: none;
     padding: 10px 24px;
@@ -126,27 +124,23 @@ textarea {
     background: #f0f4fa;
     color: #2c3e50;
 }
-
 .btn-cancel:hover {
     background: #e2eaf3;
 }
-
 .btn-submit {
     background: #10b981;
 }
-
 .btn-submit:hover {
     background: #059669;
 }
-
 .btn-danger {
     background: #932a34;
 }
-
 .btn-danger:hover {
     background: #ac1a2a;
 }
 
-.form-error{
+/* Сообщение об ошибке */
+.form-error {
     color: red;
 }

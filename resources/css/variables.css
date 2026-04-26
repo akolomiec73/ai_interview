@@ -1,0 +1,28 @@
+/* ----------------------------------------------
+   Переменные (цвета, отступы, тени, радиусы)
+---------------------------------------------- */
+:root {
+    --bg-gradient: linear-gradient(145deg, #e0eafc 0%, #a4bfe3 100%);
+    --card-bg: rgba(255, 255, 255, 0.96);
+    --card-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.35), 0 4px 12px rgba(0, 0, 0, 0.05);
+    --header-gradient: linear-gradient(135deg, #1f2b3c, #2a3f5e);
+    --border-light: #eef2f6;
+    --border-medium: #cbdde9;
+    --text-dark: #1f2b3c;
+    --text-muted: #6c7e91;
+    --primary-green: #10b981;
+    --primary-green-dark: #059669;
+    --danger: #932a34;
+    --danger-hover: #ac1a2a;
+    --badge-planned-bg: #e6f4ea;
+    --badge-planned-color: #10b981;
+    --badge-completed-bg: #e7f0fa;
+    --badge-completed-color: #2c7da0;
+    --badge-cancelled-bg: #fee2e2;
+    --badge-cancelled-color: #b91c1c;
+    --radius-lg: 1.5rem;
+    --radius-md: 1rem;
+    --radius-sm: 0.5rem;
+    --radius-btn: 40px;
+    --transition: all 0.2s ease;
+}

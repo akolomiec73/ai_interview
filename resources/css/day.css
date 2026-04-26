@@ -1,4 +1,8 @@
-/*Список событий*/
+/* ----------------------------------------------
+   Стили страницы "События дня"
+---------------------------------------------- */
+
+/* Список событий */
 .events-list {
     list-style: none;
     display: flex;
@@ -6,56 +10,61 @@
     gap: 1rem;
 }
 
-/*Карточка события*/
+/* Карточка события */
 .event-item-card {
     background: #ffffff;
-    border: 1px solid #eef2f6;
-    border-radius: 1.5rem;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
     padding: 1rem 1.25rem;
-    transition: all 0.2s;
+    transition: var(--transition);
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.05);
 }
-
 .event-item-card:hover {
     transform: translateY(-2px);
-    border-color: #cbdde9;
+    border-color: var(--border-medium);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
 }
 
-/*Время события*/
+/* Время события (крупное, зелёное) */
 .event-time {
     font-weight: 700;
     font-size: 2rem;
-    color: #10b981;
+    color: var(--primary-green);
     margin-bottom: 0.5rem;
     display: inline-block;
     background: rgba(16, 185, 129, 0.1);
     padding: 0.2rem 0.8rem;
-    border-radius: 40px;
+    border-radius: var(--radius-btn);
 }
 
+/* Сообщение "Нет событий" */
 .no-events {
     text-align: center;
     padding: 3rem 1rem;
     font-size: 1.4rem;
-    color: #6c7e91;
+    color: var(--text-muted);
     background: #f9fbfe;
     border-radius: 2rem;
     margin-bottom: 1.5rem;
 }
 
-/* Название + компания + зарплата */
-.event-name {
-    font-size: 1.4rem;
-    font-weight: 600;
+/* Основная информация (компания, должность, зарплата...) */
+.event-main-info {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
 }
-
 .company-name {
     font-weight: 700;
     color: #0f5c7a;
     font-size: 1.2rem;
 }
-
+.company-job-title {
+    font-weight: 500;
+    color: #4b5b6c;
+}
 .company-salary {
     background: #eef2e6;
     color: #2b6e3c;
@@ -64,7 +73,6 @@
     padding: 0.2rem 0.6rem;
     border-radius: 30px;
 }
-
 .company-format_work {
     background: #f0eef9;
     color: #5a4a8c;
@@ -73,8 +81,16 @@
     padding: 0.2rem 0.6rem;
     border-radius: 30px;
 }
+.company-city {
+    background: #e8f1ff;
+    color: #4a4f8c;
+    font-weight: 500;
+    font-size: 0.8rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 30px;
+}
 
-/* Скиллы */
+/* Список навыков */
 .company-skills {
     color: #2f4858;
     background: #f8fafc;
@@ -93,53 +109,7 @@
     border-left: 3px solid #f5bc70;
 }
 
-.event-card-link {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-    cursor: pointer;
-}
-
-/* Верхняя строка: время и статус */
-.event-header-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.5rem;
-}
-
-/* Основная информация */
-.event-main-info {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 0.5rem;
-}
-
-.company-job-title {
-    font-weight: 500;
-    color: #4b5b6c;
-}
-
-.company-industry {
-    background: #f9eeee;
-    color: #8c4a4a;
-    font-weight: 500;
-    font-size: 0.8rem;
-    padding: 0.2rem 0.6rem;
-    border-radius: 30px;
-}
-
-.company-city {
-    background: #e8f1ff;
-    color: #4a4f8c;
-    font-weight: 500;
-    font-size: 0.8rem;
-    padding: 0.2rem 0.6rem;
-    border-radius: 30px;
-}
-
-/* Ссылка на вакансию */
+/* Ссылка на вакансию – иконка только для страницы дня */
 .link-vacancy {
     margin-top: 0.5rem;
     font-size: 0.85rem;
@@ -148,33 +118,16 @@
     display: inline-flex;
     align-items: center;
     gap: 0.3rem;
-    color: #2c7da0;
-    text-decoration: none;
-    font-weight: 500;
-}
-.link-vacancy a:hover {
-    text-decoration: underline;
 }
 .link-vacancy a::before {
     content: "🔗";
     font-size: 0.8rem;
 }
 
-.event-status {
-    font-weight: 600;
-    font-size: 0.8rem;
-    padding: 0.25rem 0.8rem;
-    border-radius: 30px;
-}
-.status-planned {
-    background: #e6f4ea;
-    color: #10b981;
-}
-.status-completed {
-    background: #e7f0fa;
-    color: #2c7da0;
-}
-.status-cancelled {
-    background: #fee2e2;
-    color: #b91c1c;
+/* Карточка события — ссылка (переопределяем стиль только для дня) */
+.event-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
 }

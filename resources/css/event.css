@@ -1,72 +1,6 @@
-/* Кнопка удаления события */
-.btn-danger {
-    background-color: #932a34;
-}
-
-/* Кнопка "Перенести" */
-.btn-move {
-    background-color: #4f8ee1;
-}
-
-/* Кнопка "добавить этап" */
-.btn-next-stage {
-    background-color: #10b981;
-}
-
-.detail-row {
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-.label {
-    font-weight: 600;
-    width: 120px;
-}
-
-/* Стили для блока вакансии */
-.vacancy-block {
-    background: #ffffff;
-    border-radius: 1.5rem;
-    padding: 1.2rem;
-    border: 1px solid #eef2f6;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-}
-
-
-.vacancy-info p {
-    margin-bottom: 0.5rem;
-    line-height: 1.4;
-}
-
-.top-questions {
-    background: #f9fbfe;
-    padding: 1rem;
-    border-radius: 1rem;
-    margin-top: 1rem;
-}
-
-.top-questions ul {
-    margin: 0.5rem 0 0 1.5rem;
-}
-
-.top-questions h3 {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #1f2b3c;
-    margin-bottom: 0.5rem;
-}
-
-.top-questions ul {
-    padding-left: 1.2rem;
-}
-
-.top-questions li {
-    margin-bottom: 0.4rem;
-    font-size: 0.85rem;
-}
+/* ----------------------------------------------
+   Стили страницы события (детали + цепочка)
+---------------------------------------------- */
 
 /* Двухколоночная сетка */
 .content-body-info {
@@ -74,12 +8,10 @@
     flex-wrap: wrap;
     gap: 2rem;
 }
-
 .left-side {
     flex: 2;
     min-width: 250px;
 }
-
 .right-side {
     flex: 2;
     min-width: 250px;
@@ -87,27 +19,26 @@
 
 /* ===== Карточки цепочки событий ===== */
 .event-card {
-    border: 1px solid #eef2f6;
-    border-radius: 1.5rem;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
     padding: 1rem 1.25rem;
-    transition: all 0.2s ease;
+    transition: var(--transition);
     position: relative;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03);
 }
-
 .event-card-link {
     text-decoration: none;
     color: inherit;
     display: block;
 }
 
-/* Время события */
+/* Время события в цепочке (уменьшенное) */
 .event-time {
     font-size: 1.3rem;
     font-weight: 700;
     display: inline-block;
     padding: 0.2rem 0.8rem;
-    border-radius: 40px;
+    border-radius: var(--radius-btn);
     margin-bottom: 0.5rem;
 }
 
@@ -117,18 +48,11 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: #6c7e91;
+    color: var(--text-muted);
     margin-bottom: 0.5rem;
 }
 
-/* Название компании */
-.company-name {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #0f5c7a;
-}
-
-/* Комментарий в карточках */
+/* Комментарий в карточках цепочки */
 .event-comment {
     font-size: 0.9rem;
     color: #5b6e8c;
@@ -138,25 +62,20 @@
     border-left: 3px solid #f5bc70;
 }
 
-/* Карточка родительского события */
+/* Стили для родительских событий */
 .chain-parent {
     border-left: 6px solid #a02c2c;
     background: #f8fafd;
     margin-bottom: 2rem;
     opacity: 0.6;
 }
-
-/* Для родительской карточки – компактный вид */
 .chain-parent .event-time {
     color: #a02c2c;
     background: rgb(160 44 44 / 10%);
 }
-
 .chain-parent .event-stage-title {
     color: #a02c2c;
 }
-
-/* Связующая линия между карточками (визуально) */
 .chain-parent::after {
     content: '';
     position: absolute;
@@ -164,37 +83,33 @@
     left: 2rem;
     width: 3px;
     height: 2rem;
-    background: #cbdde9;
+    background: var(--border-medium);
 }
-
 .chain-parent:hover {
     background: #f1f6fd;
     transform: translateX(4px);
 }
 
-/* Карточка текущего события – визуально главная */
+/* Текущее событие */
 .current-event-card {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-    border-left: 10px solid #10b981;
+    border-left: 10px solid var(--primary-green);
 }
-
 .current-event-card .event-stage-title {
-    color: #10b981;
+    color: var(--primary-green);
 }
-
 .current-event-card .event-time {
     background: rgba(16, 185, 129, 0.1);
-    color: #10b981;
+    color: var(--primary-green);
 }
 
-/* Карточка дочернего события */
+/* Дочерние события */
 .chain-child {
     background: #f9fbfe;
     border-left: 6px solid #1094b9;
     margin-top: 2rem;
     opacity: 0.6;
 }
-
 .chain-child::before {
     content: '';
     position: absolute;
@@ -202,181 +117,176 @@
     left: 2rem;
     width: 3px;
     height: 2rem;
-    background: #cbdde9;
+    background: var(--border-medium);
 }
-
-/* Дочерние карточки – стандартный вид, но с отличием */
 .chain-child .event-time {
     color: #1081b9;
     background: rgb(16 121 185 / 10%);
 }
-
 .chain-child .event-stage-title {
     color: #1081b9;
 }
-
 .chain-child:hover {
     background: #f1f6fd;
     transform: translateX(4px);
 }
 
-.event-header-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.5rem;
+/* ===== Блок вакансии ===== */
+.vacancy-block {
+    background: #ffffff;
+    border-radius: var(--radius-lg);
+    padding: 1.2rem;
+    border: 1px solid var(--border-light);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
-
-.event-status {
-    font-weight: 600;
-    font-size: 0.8rem;
-    padding: 0.25rem 0.8rem;
-    border-radius: 30px;
-}
-.status-planned {
-    background: #e6f4ea;
-    color: #10b981;
-}
-.status-completed {
-    background: #e7f0fa;
-    color: #2c7da0;
-}
-.status-cancelled {
-    background: #fee2e2;
-    color: #b91c1c;
-}
-
 .vacancy-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border-light);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
 }
-
+.vacancy-header h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
 .vacancy-header h2::before {
     content: "💼";
     font-size: 1.4rem;
 }
-
 .job-title {
     font-weight: 500;
-    color: #1f2b3c;
+    color: var(--text-dark);
     font-size: 1.2rem;
 }
 
-.vacancy-header {
-    border-bottom: 2px solid #eef2f8;
-    padding-bottom: 0.5rem;
-}
-
-
-.vacancy-header h2::before {
-    content: "💼";
-    font-size: 1.4rem;
-}
-
+/* Сетка полей вакансии */
 .vacancy-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem 1.5rem;
     margin-bottom: 1.5rem;
 }
-
 .vacancy-item {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
 }
-
 .vacancy-item .label {
     font-size: 0.7rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    color: #6c7e91;
+    color: var(--text-muted);
 }
-
 .vacancy-item .value {
     font-weight: 500;
-    color: #1f2b3c;
+    color: var(--text-dark);
     word-break: break-word;
 }
-
 .vacancy-item .value.company {
     font-size: 1.2rem;
     font-weight: 700;
     color: #0f5c7a;
 }
-
 .vacancy-item .value.salary {
     font-weight: 700;
-    color: #10b981;
+    color: var(--primary-green);
 }
 
-.vacancy-item .value.benefits {
-    background: #fefce8;
-    padding: 0.2rem 0.5rem;
-    border-radius: 1rem;
-    display: inline-block;
-}
-
-.skills-block {
+/* Плюшки */
+.benefits-block {
     background: #f8fafc;
-    border-radius: 1rem;
+    border-radius: var(--radius-md);
     padding: 1rem;
     margin-bottom: 1.5rem;
 }
-
-.skills-block .label {
+.benefits-block .label {
     font-size: 0.7rem;
     font-weight: 600;
     text-transform: uppercase;
-    color: #6c7e91;
+    color: var(--text-muted);
     margin-bottom: 0.5rem;
     display: block;
 }
-
-.skills-list {
+.benefits-list {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
 }
-
-.skill-badge {
+.benefit-badge {
     background: white;
     border: 1px solid #cfdfed;
-    border-radius: 40px;
+    border-radius: var(--radius-btn);
     padding: 0.2rem 0.8rem;
     font-size: 0.8rem;
     font-weight: 500;
     color: #2c3e50;
     transition: 0.1s;
 }
-
-.skill-badge:hover {
+.benefit-badge:hover {
     background: #e9f0f9;
-    border-color: #10b981;
+    border-color: var(--primary-green);
 }
 
+/* Навыки */
+.skills-block {
+    background: #f8fafc;
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+.skills-block .label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+    display: block;
+}
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+.skill-badge {
+    background: white;
+    border: 1px solid #cfdfed;
+    border-radius: var(--radius-btn);
+    padding: 0.2rem 0.8rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #2c3e50;
+    transition: 0.1s;
+}
+.skill-badge:hover {
+    background: #e9f0f9;
+    border-color: var(--primary-green);
+}
+
+/* Нижняя часть блока вакансии (ссылка) */
 .vacancy-footer {
     margin-top: 1rem;
     padding-top: 1rem;
-    border-top: 1px solid #eef2f6;
+    border-top: 1px solid var(--border-light);
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     gap: 1rem;
 }
-
 .link-vacancy-outline {
     background: #f0f4fa;
     padding: 0.4rem 1rem;
-    border-radius: 40px;
+    border-radius: var(--radius-btn);
     font-weight: 500;
     transition: 0.2s;
 }
-
 .link-vacancy-outline a {
     color: #2c7da0;
     text-decoration: none;
@@ -384,60 +294,32 @@
     align-items: center;
     gap: 0.3rem;
 }
-
 .link-vacancy-outline a::before {
     content: "🔗";
     font-size: 0.9rem;
 }
-
 .link-vacancy-outline:hover {
     background: #e2eaf3;
 }
 
-
-.benefits-block {
-    background: #f8fafc;
-    border-radius: 1rem;
+/* Топ вопросов */
+.top-questions {
+    background: #f9fbfe;
     padding: 1rem;
-    margin-bottom: 1.5rem;
+    border-radius: var(--radius-md);
+    margin-top: 1rem;
 }
-
-.benefits-block .label {
-    font-size: 0.7rem;
+.top-questions h3 {
+    font-size: 1rem;
     font-weight: 600;
-    text-transform: uppercase;
-    color: #6c7e91;
+    color: var(--text-dark);
     margin-bottom: 0.5rem;
-    display: block;
 }
-
-.benefits-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+.top-questions ul {
+    margin: 0.5rem 0 0 1.5rem;
+    padding-left: 0;
 }
-
-.benefit-badge {
-    background: white;
-    border: 1px solid #cfdfed;
-    border-radius: 40px;
-    padding: 0.2rem 0.8rem;
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: #2c3e50;
-    transition: 0.1s;
-}
-
-.benefit-badge:hover {
-    background: #e9f0f9;
-    border-color: #10b981;
-}
-
-.company-industry {
-    background: #f9eeee;
-    color: #8c4a4a;
-    font-weight: 500;
-    font-size: 0.8rem;
-    padding: 0.2rem 0.6rem;
-    border-radius: 30px;
+.top-questions li {
+    margin-bottom: 0.4rem;
+    font-size: 0.85rem;
 }

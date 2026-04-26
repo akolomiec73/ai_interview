@@ -1,31 +1,24 @@
-/* месяц в шапке */
+/* ----------------------------------------------
+   Стили календаря (главная страница)
+---------------------------------------------- */
 .month-year {
     font-size: 2rem;
     font-weight: 700;
 }
-
-/*Кнопка добавить событие*/
-.btn-add {
-    background-color: #10b981;
-}
-/* кнопки навигации */
 .nav-buttons {
     display: flex;
     gap: 0.75rem;
 }
-
 .nav-btn {
     background: #f0f4fa;
     width: 44px;
     color: #1f3a5f;
 }
-
-/* сетка дней недели */
 .weekdays {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     background: #f8fafd;
-    border-bottom: 1px solid #e9edf2;
+    border-bottom: 1px solid var(--border-light);
     padding: 0.9rem 0;
     font-weight: 600;
     color: #4b5b6c;
@@ -34,8 +27,6 @@
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
-
-/* дни месяца — грид */
 .calendar-days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -43,55 +34,42 @@
     padding: 0.5rem;
     gap: 4px;
 }
-
-/* ячейка дня */
 .day-cell {
     aspect-ratio: 1 / 1;
     font-weight: 600;
     color: #1e2f3e;
     border: 2px solid #cfdfed;
     border-radius: 1.7rem;
-    transition: all 0.2s;
+    transition: var(--transition);
     position: relative;
     margin: 2px;
 }
-
-/* дни другого месяца */
 .day-cell.other-month {
     color: #b9c2ce;
     background: #f5f5f5;
 }
-
-/* сегодняшняя дата */
 .day-cell.today {
     background: #2c7da0;
     color: white;
     font-weight: 700;
     box-shadow: 0 4px 10px rgba(44, 125, 160, 0.3);
 }
-
 .day-cell:not(.other-month):hover {
     background: #e9f0f9;
     transform: scale(0.96);
     cursor: pointer;
 }
-
-/* воскресенье или выходной */
 .day-cell.weekend:not(.other-month) {
     color: #c44536;
     background: #ffefef;
 }
-
 .day-cell.today.weekend {
     color: white;
     background: #2c7da0;
 }
-
 .day-cell.has-event:not(.today) {
     background-color: #f6f9ff;
 }
-
-/* цифра дня в ячейке */
 .day-number {
     position: absolute;
     top: 5px;
@@ -99,8 +77,6 @@
     font-size: 1.3rem;
     font-weight: 600;
 }
-
-/*блок событий в ячейке дня*/
 .day-events {
     margin-top: 40px;
     width: 100%;
@@ -112,8 +88,6 @@
     font-size: 0.7rem;
     overflow: hidden;
 }
-
-/*строчка с событием*/
 .event-item {
     background: rgba(16, 185, 129, 0.1);
     border-radius: 12px;
@@ -126,12 +100,10 @@
     cursor: pointer;
     transition: 0.1s;
 }
-
 .event-item:hover {
     background: rgba(16, 185, 129, 0.3);
 }
-
 .event-more {
     font-size: 0.65rem;
-    color: #6c7e91;
+    color: var(--text-muted);
 }
