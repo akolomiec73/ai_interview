@@ -85,11 +85,11 @@ class Event extends Model
     //аксессор
     public function getStageLabelAttribute(): string
     {
-        return $this->stage->cutLabel();
+        return $this->stage?->cutLabel() ?? '';
     }
 
     public function getStageColorAttribute(): string
     {
-        return $this->stage->color();
+        return $this->stage?->color() ?? '';
     }
 }
