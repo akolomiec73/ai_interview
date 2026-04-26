@@ -41,4 +41,15 @@ enum EventStage: string
     {
         return array_column(self::cases(), 'value');
     }
+
+    public function cutLabel(): string
+    {
+        return match ($this) {
+            self::FirstMeet => 'Собес (HR)',
+            self::TechnicalMeet => 'Тех собес',
+            self::TestTask => 'Тест задание',
+            self::OfferWaiting => 'Жду оффер',
+            self::ExtraMeet => 'Доп встреча',
+        };
+    }
 }

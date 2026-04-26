@@ -43,6 +43,7 @@
     transition: var(--transition);
     position: relative;
     margin: 2px;
+    overflow: hidden;
 }
 .day-cell.other-month {
     color: #b9c2ce;
@@ -90,10 +91,8 @@
 }
 .event-item {
     background: rgba(16, 185, 129, 0.1);
-    border-radius: 12px;
     padding: 2px 6px;
     width: 90%;
-    text-align: center;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -106,4 +105,29 @@
 .event-more {
     font-size: 0.65rem;
     color: var(--text-muted);
+}
+
+.stage-first-meet {
+    background-color: rgba(44, 125, 160, 0.05);
+    border-left: 4px solid #2c7da0;
+}
+
+.stage-technical-meet {
+    background-color: rgba(16, 185, 129, 0.05);
+    border-left: 4px solid #10b981;
+}
+
+.stage-test-task {
+    background-color: rgba(147, 51, 234, 0.05);
+    border-left: 4px solid #9333ea;
+}
+
+.stage-offer-waiting {
+    background-color: rgba(255, 215, 0, 0.08);
+    border-left: 4px solid #eab308;
+}
+
+.stage-extra-meet {
+    background-color: rgb(185 16 16 / 5%);
+    border-left: 4px solid #b91031;
 }

@@ -66,10 +66,10 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function createEventElement(event) {
         const eventEl = document.createElement('div');
-        eventEl.className = 'event-item';
+        eventEl.className = 'event-item '+event.stage_color;
         const timeStr = getEventTime(event.dateInterview);
-        eventEl.textContent = timeStr ? `${timeStr} Собеседование` : 'Собеседование';
-        eventEl.title = `${event.linkVacantion || 'Нет ссылки'}\n${event.comment || 'Без комментария'}`;
+        eventEl.textContent = `${timeStr} ${event.stage_label}`;
+        eventEl.title = `${event.stage_label}\nКомпания: ${event.vacancy.company}\nВакансия: ${event.vacancy.job_title}`;
         eventEl.addEventListener('click', (e) => {
             e.stopPropagation();
             window.location.href = `/events/${event.id}`;
