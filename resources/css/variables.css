@@ -14,10 +14,10 @@
     --primary-green-dark: #059669;
     --danger: #932a34;
     --danger-hover: #ac1a2a;
-    --badge-planned-bg: #e6f4ea;
-    --badge-planned-color: #10b981;
-    --badge-completed-bg: #e7f0fa;
-    --badge-completed-color: #2c7da0;
+    --badge-planned-bg: #e7f0fa;
+    --badge-planned-color: #2c7da0;
+    --badge-completed-bg: #e6f4ea;
+    --badge-completed-color: #10b981;
     --badge-cancelled-bg: #fee2e2;
     --badge-cancelled-color: #b91c1c;
     --radius-lg: 1.5rem;
