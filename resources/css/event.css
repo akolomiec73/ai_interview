@@ -323,3 +323,14 @@
     margin-bottom: 0.4rem;
     font-size: 0.85rem;
 }
+
+/* результат этапа в карточках цепочки */
+.result-comment {
+    margin-top: 0;
+    border-left: 3px solid #10b981;
+    background: var(--badge-completed-bg);
+}
+
+.result-comment-div {
+    margin-top: 1rem;
+}

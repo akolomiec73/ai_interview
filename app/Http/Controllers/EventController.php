@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateNextStageRequest;
 use App\Http\Requests\EventIndexRequest;
 use App\Http\Requests\EventRequest;
+use App\Http\Requests\ResultStageRequest;
 use App\Http\Requests\TransferEventRequest;
 use App\Models\Event;
 use App\Services\EventService;
@@ -49,15 +49,11 @@ class EventController extends Controller
         return response()->json(['message' => 'Элемент успешно удалён']);
     }
 
-    public function createNextStage(CreateNextStageRequest $request, Event $event): JsonResponse
+    public function resultStage(ResultStageRequest $request, Event $event): JsonResponse
     {
-        try {
-            $newEvent = $this->eventService->createNextStage($request->dateEvent, $request->comment, $event, $request->eventStage);
+        $this->eventService->resultStage($request->toDto(), $event);
 
-            return response()->json(['message' => 'Следующий этап создан', 'event' => $newEvent], 201);
-        } catch (\DomainException $e) {
-            return response()->json(['message' => $e->getMessage()], 422);
-        }
+        return response()->json(['message' => 'Успех'], 201);
     }
 
     public function update(TransferEventRequest $request, Event $event): JsonResponse

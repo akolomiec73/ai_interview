@@ -26,4 +26,6 @@ interface EventRepositoryInterface
     public function transferEvent(Carbon $newDate, Event $event): void;
 
     public function getUpcomingEvents(Carbon $now, Carbon $oneDayLater): Collection;
+
+    public function completeStage(string $comment, Event $event): void;
 }

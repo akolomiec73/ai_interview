@@ -78,12 +78,14 @@ class EventRepository implements EventRepositoryInterface
     public function createNextStage(Carbon $date, string $comment, Event $event, string $stage): Event
     {
         return DB::transaction(function () use ($date, $comment, $event, $stage) {
-            $event->update(['status' => EventStatus::Completed]);
+            $event->update([
+                'status' => EventStatus::Completed,
+                'resultComment' => $comment,
+            ]);
 
             return Event::create([
                 'dateInterview' => $date,
                 'linkVacantion' => $event->linkVacantion,
-                'comment' => $comment,
                 'status' => EventStatus::Planned,
                 'parent_event_id' => $event->id,
                 'vacancy_id' => $event->vacancy_id,
@@ -109,5 +111,13 @@ class EventRepository implements EventRepositoryInterface
             ->whereBetween('dateInterview', [$now, $oneDayLater])
             ->orderBy('dateInterview', 'asc')
             ->get(['id', 'dateInterview', 'vacancy_id']);
+    }
+
+    public function completeStage(string $comment, Event $event): void
+    {
+        $event->update([
+            'status' => EventStatus::Completed,
+            'resultComment' => $comment,
+        ]);
     }
 }

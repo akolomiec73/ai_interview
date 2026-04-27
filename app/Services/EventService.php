@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Services;
 
 use App\DTO\CreateEventDto;
-use App\Enums\EventStatus;
+use App\DTO\ResultStageDto;
 use App\Jobs\ParseVacancyJob;
 use App\Models\Event;
 use App\Repositories\Contract\EventRepositoryInterface;
@@ -68,14 +68,13 @@ class EventService
     /**
      * Создание следующей стадии события
      */
-    public function createNextStage(string $date, string $comment, Event $event, string $stage): Event
+    public function resultStage(ResultStageDto $data, Event $event): void
     {
-        if ($event->status === EventStatus::Completed || $event->status === EventStatus::Cancelled) {
-            throw new \DomainException('Нельзя создать следующий этап для завершённого или отменённого события');
+        if ($data->action === 'next_stage') {
+            $this->db->createNextStage($data->dateEvent, $data->comment, $event, $data->eventStage);
+        } else {
+            $this->db->completeStage($data->comment, $event);
         }
-        $date = Carbon::parse($date);
-
-        return $this->db->createNextStage($date, $comment, $event, $stage);
     }
 
     /**

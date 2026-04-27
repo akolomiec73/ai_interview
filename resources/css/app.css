@@ -90,7 +90,7 @@ body {
 .btn-danger {
     background-color: var(--danger);
 }
-.btn-next-stage {
+.btn-result-stage {
     background-color: var(--primary-green);
 }
 

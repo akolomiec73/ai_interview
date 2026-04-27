@@ -173,3 +173,58 @@ select:focus {
 select::-ms-expand {
     display: none;
 }
+
+/* ----------------------------------------------
+   Стилизация радиокнопок и чекбоксов в модалках
+---------------------------------------------- */
+.radio-group label, .checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: normal;
+    cursor: pointer;
+    user-select: none;
+    color: #2c3e50;
+}
+
+/* Скрываем стандартные элементы */
+.radio-group input[type="radio"]{
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Кастомная радиокнопка */
+.radio-group input[type="radio"] + span {
+    position: relative;
+    display: inline-block;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid #cfdfed;
+    border-radius: 50%;
+    background: white;
+    transition: 0.2s;
+    margin-right: 0.25rem;
+}
+
+.radio-group input[type="radio"]:checked + span::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0.65rem;
+    height: 0.65rem;
+    background: #10b981;
+    border-radius: 50%;
+}
+
+.radio-group input[type="radio"]:checked + span {
+    border-color: #10b981;
+}
+
+/* Эффекты при наведении и фокусе */
+.radio-group input[type="radio"]:hover + span {
+    border-color: #10b981;
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+}

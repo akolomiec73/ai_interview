@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const radioButtons = document.querySelectorAll('input[name="action"]');
+    const nextStageFields = document.getElementById('nextStageFields');
+    const completeFields = document.getElementById('completeFields');
+    const dateEventNext = document.getElementById('dateEventNext');
+    const eventStageNext = document.getElementById('eventStageNext');
     /**
      * Функция открытия модального окна
      * @param modal
@@ -22,6 +27,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 form.reset();
             }
         }
+    }
+
+    /**
+     * Вспомогательная функция переключения обязательного значения поля
+     */
+    function toggleRequired(isNextStage) {
+        dateEventNext.required = isNextStage;
+        eventStageNext.required = isNextStage;
     }
 
     /*-------------------------События---------------------------*/
@@ -61,4 +74,19 @@ document.addEventListener('DOMContentLoaded', () => {
             if (modal) closeModal(modal);
         }
     };
+
+    // Выбор действия в модалке result-stage-modal
+    radioButtons.forEach(radio => {
+        radio.addEventListener('change', () => {
+            nextStageFields.style.display = 'none';
+            completeFields.style.display = 'none';
+            if (radio.value === 'next_stage'){
+                nextStageFields.style.display = 'block';
+                toggleRequired(false)
+            } else if (radio.value === 'complete'){
+                completeFields.style.display = 'block';
+                toggleRequired(false)
+            }
+        });
+    });
 });

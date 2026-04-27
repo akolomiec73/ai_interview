@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
     const transferEventBtn = document.getElementById('transferEventBtn');
-    const nextStageBtn = document.getElementById('nextStageBtn');
-    const formNextStageEvent = document.getElementById('formNextStageEvent');
+    const resultStageBtn = document.getElementById('resultStageBtn');
+    const formResultStage = document.getElementById('formResultStage');
     const formTransferEvent = document.getElementById('formTransferEvent')
 
     /**
@@ -48,10 +48,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * Создание следующей стадии события
-     * @returns {Promise<void>}
+     * Фиксация результатов события
      */
-    async function nextStageEvent() {
+    async function ResultStage() {
         const submitBtn = document.querySelector('.btn-submit');
         const originalText = submitBtn.textContent;
         const errorDiv = document.getElementById('errorMessage');
@@ -60,12 +59,19 @@ document.addEventListener('DOMContentLoaded', () => {
         errorDiv.textContent = '';
 
         try {
-            const dateEvent = document.getElementById('dateEventNext').value.trim();
-            const comment = document.getElementById('commentNext').value.trim();
-            const eventId = nextStageBtn.getAttribute('data-id');
-            const eventStage = document.getElementById('eventStageNext').value;
+            const action = document.querySelector('input[name="action"]:checked').value;
+            const eventId = resultStageBtn.getAttribute('data-id');
+            let payload = {action};
 
-            await axios.post(`/api/events/${eventId}/next-stage`, {dateEvent, comment, eventStage});
+            if (action === 'next_stage') {
+                payload.dateEvent = document.getElementById('dateEventNext').value;
+                payload.eventStage = document.getElementById('eventStageNext').value;
+                payload.comment = document.getElementById('commentNext').value.trim();
+            } else if (action === 'complete') {
+                payload.comment = document.getElementById('completeComment').value;
+            }
+
+            await axios.post(`/api/events/${eventId}/result-stage`, payload);
             window.location.href = `/events/${eventId}`;
         } catch (error) {
             errorDiv.textContent = error.response?.data?.message || 'Произошла ошибка при сохранении';
@@ -86,9 +92,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     //Добавление следующей стадии
-    formNextStageEvent.addEventListener('submit', function (e) {
+    formResultStage.addEventListener('submit', function (e) {
         e.preventDefault();
-        nextStageEvent();
+        ResultStage();
     });
 
     //Перенос события

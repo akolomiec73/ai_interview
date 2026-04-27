@@ -13,10 +13,10 @@
 @section('content-header')
     <h1>
         <a href="{{ route('main') }}">📅</a>
-         Собеседование
+        {{ $event->stage->label() }}
     </h1>
     <div>
-        <button type="button" class="btn btn-next-stage" id="nextStageBtn" data-modal-open="modalNextStageEvent" data-id="{{ $event->id }}">➕ Добавить этап</button>
+        <button type="button" class="btn btn-result-stage" id="resultStageBtn" data-modal-open="modalResultStage" data-id="{{ $event->id }}">➕ Результат этапа</button>
         <button type="button" class="btn btn-move" id="transferEventBtn" data-modal-open="modalTransferEvent" data-id="{{ $event->id }}">📅 Перенести</button>
         <button type="button" class="btn btn-danger" data-modal-open="modalDeleteEvent" data-id="{{ $event->id }}" data-event-date="{{ $event->dateInterview->format('Y-m-d') }}">✕ Удалить</button>
     </div>
@@ -37,6 +37,12 @@
                             <div class="event-time">{{ $ancestor->dateInterview->translatedFormat('d F H:i') }}</div>
                             <div class="event-stage">{{ $ancestor->stage->label() }}</div>
                             <div class="event-comment">{{ $ancestor->comment }}</div>
+                            @if($ancestor->resultComment)
+                                <div class="result-comment-div">
+                                    <span class="event-stage">Результат этапа:</span>
+                                    <div class="event-comment result-comment">{{ $ancestor->resultComment }}</div>
+                                </div>
+                            @endif
                         </a>
                     </div>
                 @endforeach
@@ -50,6 +56,12 @@
                     <div class="event-time">{{ $event->dateInterview->translatedFormat('d F H:i') }}</div>
                     <div class="event-stage">{{ $event->stage->label() }}</div>
                     <div class="event-comment">{{ $event->comment }}</div>
+                    @if($event->resultComment)
+                        <div class="result-comment-div">
+                            <span class="event-stage">Результат этапа:</span>
+                            <div class="event-comment result-comment">{{ $event->resultComment }}</div>
+                        </div>
+                    @endif
                 </div>
 
                 {{-- ВСЕ СЛЕДУЮЩИЕ ЭТАПЫ (цепочка потомков) --}}
@@ -63,6 +75,12 @@
                             <div class="event-time">{{ $descendant->dateInterview->translatedFormat('d F H:i') }}</div>
                             <div class="event-stage">{{ $descendant->stage->label() }}</div>
                             <div class="event-comment">{{ $descendant->comment }}</div>
+                            @if($descendant->resultComment)
+                                <div class="result-comment-div">
+                                    <span class="event-stage">Результат этапа:</span>
+                                    <div class="event-comment result-comment">{{ $descendant->resultComment }}</div>
+                                </div>
+                            @endif
                         </a>
                     </div>
                 @endforeach
@@ -98,16 +116,16 @@
                         </div>
 
                         @if($event->vacancy->benefits !== 'Не указано')
-                        <div class="benefits-block">
-                            <span class="label">Плюшки</span>
-                            <div class="value benefits-list">
-                                @foreach(explode(',', $event->vacancy->benefits) as $benefit)
-                                    @if(trim($benefit))
-                                        <span class="benefit-badge">{{ trim($benefit) }}</span>
-                                    @endif
-                                @endforeach
+                            <div class="benefits-block">
+                                <span class="label">Плюшки</span>
+                                <div class="value benefits-list">
+                                    @foreach(explode(',', $event->vacancy->benefits) as $benefit)
+                                        @if(trim($benefit))
+                                            <span class="benefit-badge">{{ trim($benefit) }}</span>
+                                        @endif
+                                    @endforeach
+                                </div>
                             </div>
-                        </div>
                         @endif
 
                         <div class="skills-block">
@@ -151,6 +169,6 @@
 
 @section('include-modals')
     @include('modals.confirm-delete-event-modal')
-    @include('modals.next-stage-event-modal')
+    @include('modals.result-stage-modal')
     @include('modals.transfer-event-modal')
 @endsection

@@ -20,6 +20,7 @@ use Illuminate\Support\Carbon;
  * @property EventStatus $status
  * @property ?int $parent_event_id
  * @property EventStage $stage
+ * @property string|null $resultComment
  */
 class Event extends Model
 {
@@ -35,6 +36,7 @@ class Event extends Model
         'status',
         'parent_event_id',
         'stage',
+        'resultComment',
     ];
 
     protected $casts = [
