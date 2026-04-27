@@ -26,20 +26,23 @@
                                 <div class="event-status {{ $event->status->color() }}">{{ $event->status->label() }}</div>
                             </div>
 
-                            <div class="event-main-info">
-                                <span class="company-name">{{ $event->vacancy->company }}</span>
-                                <span class="company-job-title">{{ $event->vacancy->job_title }}</span>
-                                <span class="company-salary">{{ $event->vacancy->salary }}</span>
-                                <span class="company-format_work">{{ $event->vacancy->format_work }}</span>
-                                @if($event->vacancy->industry !== 'Не указано')
-                                    <span class="company-industry">{{ $event->vacancy->industry }}</span>
-                                @endif
-                                @if($event->vacancy->city !== 'Не указано')
-                                    <span class="company-city">{{ $event->vacancy->city }}</span>
-                                @endif
-                            </div>
-
-                            <div class="company-skills">{{ $event->vacancy->skills }}</div>
+                            @if($event->vacancy)
+                                <div class="event-main-info">
+                                    <span class="company-name">{{ $event->vacancy->company }}</span>
+                                    <span class="company-job-title">{{ $event->vacancy->job_title }}</span>
+                                    <span class="company-salary">{{ $event->vacancy->salary }}</span>
+                                    <span class="company-format_work">{{ $event->vacancy->format_work }}</span>
+                                    @if($event->vacancy->industry !== 'Не указано')
+                                        <span class="company-industry">{{ $event->vacancy->industry }}</span>
+                                    @endif
+                                    @if($event->vacancy->city !== 'Не указано')
+                                        <span class="company-city">{{ $event->vacancy->city }}</span>
+                                    @endif
+                                </div>
+                                <div class="company-skills">{{ $event->vacancy->skills }}</div>
+                            @else
+                                <div class="event-no-vacancy">Данные о вакансии загружаются...</div>
+                            @endif
                             @if($event->comment)
                                 <div class="event-comment">{{ $event->comment }}</div>
                             @endif
