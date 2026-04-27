@@ -12,7 +12,7 @@ readonly class CreateEventDto
      * @param  Carbon  $dateEvent  дата события
      * @param  string  $linkVacancy  ссылка на вакансию
      * @param  ?string  $comment  комментарий
-     * @param  string  $eventStage стадия
+     * @param  string  $eventStage  стадия
      */
     public function __construct(
         public Carbon $dateEvent,

@@ -24,6 +24,7 @@ use Illuminate\Support\Carbon;
 class Event extends Model
 {
     protected $table = 'events';
+
     protected $appends = ['stage_label', 'stage_color'];
 
     protected $fillable = [
@@ -82,7 +83,7 @@ class Event extends Model
         return $descendants;
     }
 
-    //аксессор
+    // аксессор
     public function getStageLabelAttribute(): string
     {
         return $this->stage?->cutLabel() ?? '';
