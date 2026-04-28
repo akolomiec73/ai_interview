@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\AudioController;
 use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,3 +17,5 @@ Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('eve
 Route::post('/events/{event}/result-stage', [EventController::class, 'resultStage']);
 Route::put('/events/{event}', [EventController::class, 'update']);
 Route::get('/upcoming-events', [EventController::class, 'upcoming']);
+
+Route::post('/events/{event}/upload-audio', [AudioController::class, 'upload']);

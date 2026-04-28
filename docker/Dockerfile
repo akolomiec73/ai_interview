@@ -8,9 +8,13 @@ RUN apt-get update && apt-get install -y \
     git \
     curl \
     postgresql-client \
+    ffmpeg \
     && docker-php-ext-install pdo_pgsql pgsql zip
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Копируем пользовательский php.ini
+COPY docker/php/php.ini /usr/local/etc/php/conf.d/99-custom.ini
 
 COPY docker/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh

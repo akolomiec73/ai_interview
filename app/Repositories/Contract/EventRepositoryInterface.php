@@ -28,4 +28,10 @@ interface EventRepositoryInterface
     public function getUpcomingEvents(Carbon $now, Carbon $oneDayLater): Collection;
 
     public function completeStage(string $comment, Event $event): void;
+
+    public function saveAudioPath(string $path, Event $event): void;
+
+    public function updateTranscriptionAudio(array $transcriptionDetails, Event $event): void;
+
+    public function updateSpeechkitOperationId(string $operationId, Event $event): void;
 }

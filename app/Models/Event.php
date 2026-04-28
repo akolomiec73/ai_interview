@@ -37,12 +37,16 @@ class Event extends Model
         'parent_event_id',
         'stage',
         'resultComment',
+        'audio_path',
+        'speechkit_operation_id',
+        'audio_transcription',
     ];
 
     protected $casts = [
         'dateInterview' => 'datetime',
         'status' => EventStatus::class,
         'stage' => EventStage::class,
+        'audio_transcription' => 'array',
     ];
 
     public function vacancy()

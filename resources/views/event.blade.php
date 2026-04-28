@@ -7,7 +7,7 @@
 @endpush
 
 @push('scripts')
-    @vite(['resources/js/event.js', 'resources/js/modal.js'])
+    @vite(['resources/js/event.js', 'resources/js/modal.js', 'resources/js/recording.js'])
 @endpush
 
 @section('content-header')
@@ -160,6 +160,18 @@
             </div>
         </div>
         <a href="{{ url('/day/'.$event->dateInterview->format('Y-m-d')) }}" class="back-link">← Назад к событиям дня</a>
+        <button type="button" class="btn btn-record" id="startRecordBtn" data-id="{{ $event->id }}">🎙 Начать запись</button>
+        <button type="button" class="btn btn-stop" id="stopRecordBtn" style="display: none;">⏹ Остановить запись</button>
+
+        @if($event->audio_transcription)
+            <pre>{{ print_r($event->audio_transcription, true) }}</pre>
+        @else
+            <p>Транскрипция ещё не готова или отсутствует.</p>
+        @endif
+        <div id="recordingIndicator" style="display: none; align-items: center; gap: 6px; margin-left: 10px;">
+            <span style="display: inline-block; width: 12px; height: 12px; background-color: red; border-radius: 50%; animation: blink 1s infinite;"></span>
+            <span style="font-size: 0.8rem;">Идёт запись...</span>
+        </div>
     </div>
 @endsection
 

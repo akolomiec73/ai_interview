@@ -62,6 +62,18 @@ return [
             'report' => false,
         ],
 
+        'yandex' => [
+            'driver' => 's3',
+            'key' => env('YANDEX_ACCESS_KEY'),
+            'secret' => env('YANDEX_SECRET_KEY'),
+            'region' => 'ru-central1',
+            'bucket' => env('YANDEX_BUCKET_NAME'),
+            'endpoint' => 'https://storage.yandexcloud.net',
+            'use_path_style_endpoint' => true,
+            'url' => env('YANDEX_URL'),
+            'visibility' => 'public',
+        ],
+
     ],
 
     /*

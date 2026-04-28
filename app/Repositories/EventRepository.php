@@ -120,4 +120,28 @@ class EventRepository implements EventRepositoryInterface
             'resultComment' => $comment,
         ]);
     }
+
+    /**
+     * Сохранение ссылки на аудио
+     */
+    public function saveAudioPath(string $path, Event $event): void
+    {
+        $event->update(['audio_path' => $path]);
+    }
+
+    /**
+     * Сохранение транскрипции аудио
+     */
+    public function updateTranscriptionAudio(array $transcriptionDetails, Event $event): void
+    {
+        $event->update(['audio_transcription' => $transcriptionDetails]);
+    }
+
+    /**
+     * Сохранение id операции SpeechKit
+     */
+    public function updateSpeechkitOperationId(string $operationId, Event $event): void
+    {
+        $event->update(['speechkit_operation_id' => $operationId]);
+    }
 }
