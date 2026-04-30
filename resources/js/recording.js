@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const startRecordBtn = document.getElementById('startRecordBtn');
     const stopRecordBtn = document.getElementById('stopRecordBtn');
-    const recordingIndicator = document.getElementById('recordingIndicator');
     const eventId = startRecordBtn.getAttribute('data-id');
 
     let mediaRecorder = null;
@@ -81,7 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
             startRecordBtn.style.display = 'none';
             stopRecordBtn.disabled = false;
             stopRecordBtn.style.display = 'inline-flex';
-            recordingIndicator.style.display = 'flex';
         } catch (err) {
             console.error('Ошибка захвата аудио:', err);
             resetUI();
@@ -94,10 +92,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function resetUI() {
         startRecordBtn.disabled = false;
         startRecordBtn.style.display = 'inline-flex';
-        startRecordBtn.textContent = '🎙 Начать запись';
+        stopRecordBtn.textContent = '⏹ Остановить';
         stopRecordBtn.disabled = true;
         stopRecordBtn.style.display = 'none';
-        recordingIndicator.style.display = 'none';
 
         if (microphoneStream) {
             microphoneStream.getTracks().forEach(t => t.stop());
@@ -122,11 +119,11 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function stopRecording() {
         if (!mediaRecorder || mediaRecorder.state === 'inactive') return;
-        mediaRecorder.stop();
         stopRecordBtn.disabled = true;
-        if (recordingIndicator) recordingIndicator.style.display = 'none';
         startRecordBtn.disabled = true;
-        startRecordBtn.textContent = '⏳ Отправка...';
+        stopRecordBtn.textContent = '⏳ Отправка...';
+        mediaRecorder.stop();
+
     }
 
     /**
@@ -142,6 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
             await axios.post(`/api/events/${eventId}/upload-audio`, formData, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
+
         } catch (error) {
             console.error('Ошибка отправки:', error);
         } finally {
@@ -151,8 +149,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /*-------------------------События---------------------------*/
     // Кнопка "Начать запись"
-    startRecordBtn.addEventListener('click', startRecording);
+    if (startRecordBtn) {
+        startRecordBtn.addEventListener('click', startRecording);
+    }
 
     // Кнопка "Остановить запись"
-    stopRecordBtn.addEventListener('click', stopRecording);
+    if (stopRecordBtn) {
+        stopRecordBtn.addEventListener('click', stopRecording);
+    }
 });

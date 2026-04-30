@@ -4,6 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultStageBtn = document.getElementById('resultStageBtn');
     const formResultStage = document.getElementById('formResultStage');
     const formTransferEvent = document.getElementById('formTransferEvent')
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabPanes = document.querySelectorAll('.tab-pane');
+    const moreBtn = document.getElementById('moreActionsBtn');
+    const moreMenu = document.getElementById('moreActionsMenu');
 
     /**
      * Удаление события
@@ -102,4 +106,27 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         transferEvent();
     })
+
+    // Переключение вкладок
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const tabId = btn.getAttribute('data-tab');
+            tabBtns.forEach(b => b.classList.remove('active'));
+            tabPanes.forEach(p => p.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById(`tab-${tabId}`).classList.add('active');
+        });
+    });
+
+   // Кнопка вывода доп действий
+    moreBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        moreMenu.style.display = moreMenu.style.display === 'none' ? 'block' : 'none';
+    });
+    // Закрыть при клике вне меню
+    document.addEventListener('click', (e) => {
+        if (!moreBtn.contains(e.target) && !moreMenu.contains(e.target)) {
+            moreMenu.style.display = 'none';
+        }
+    });
 });
